@@ -26,32 +26,34 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
             class="font-mono font-extrabold text-cream tracking-tight leading-[1.6] text-center mb-3.5 reveal"
             style="font-size: clamp(28px, 4vw, 10px);"
         >
-           Si algo de esto te llama la atención, te hace pensar, <em class="italic text-accent-orange">¡hablemos!.</em>
+            Si algo de esto te llama la atención, te hace pensar, <em
+                class="italic text-accent-orange">¡hablemos!.</em
+            >   
         </h2>
 
         <div
-            class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 max-w-[780px] mx-auto mb-16 max-md:grid-cols-2 max-[480px]:grid-cols-1"
+            class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 max-w-[780px] mx-auto mb-16 max-md:grid-cols-2 max-[480px]:grid-cols-1"
         >
-            <a
-                href={`mailto:${email}`}
-                class="contact-link flex items-center gap-3.5 bg-bg1 border border-bg3 rounded-[14px] py-[18px] px-5 no-underline text-fg transition-all duration-250 relative overflow-hidden hover:-translate-y-[3px] hover:border-accent-orange hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] reveal"
+            <button
+                data-email={email}
+                class="contact-link copy-email-btn flex items-center gap-3.5 bg-bg1 border border-bg3 rounded-[14px] py-[18px] px-5 no-underline text-fg transition-all duration-250 relative overflow-hidden hover:-translate-y-[3px] hover:border-accent-orange hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] reveal w-full text-left cursor-pointer"
             >
                 <div
                     class="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center text-lg shrink-0 bg-accent-orange/[0.12]"
                 >
-                    <svg>
-                        
+                    <svg class="w-5 h-5 shrink-0" viewBox="0 0 50 50">
+                        <use href={`/sprite.svg#email`}></use>
                     </svg>
                 </div>
                 <div>
                     <p
-                        class="text-[11px] tracking-wider uppercase text-fg-sub mb-0.5"
+                        class="text-[11px] tracking-wider uppercase text-fg-sub mb-0.5 email-label transition-colors duration-200"
                     >
                         Email
                     </p>
                     <p class="text-[13px] font-medium text-fg">{email}</p>
                 </div>
-            </a>
+            </button>
 
             {
                 profiles.map((profile) => {
@@ -118,8 +120,11 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
             <p
                 class="font-italic text-[16px] font-extrabold text-cream tracking-tight"
             >
-                Creando con mucho amor <span class="text-accent-orange text-sm font-light italic">y con musica de fondo.</span>
-            <span class="text-accent-orange"></span>
+                Creando con mucho amor <span
+                    class="text-accent-orange text-sm font-light italic"
+                    >y con musica de fondo.</span
+                >
+                <span class="text-accent-orange"></span>
             </p>
             <p class="text-[11px] text-fg-sub tracking-wider">
                 © {new Date().getFullYear()}
@@ -128,3 +133,29 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
         </div>
     </div>
 </section>
+
+<script>
+    const copyBtns = document.querySelectorAll(".copy-email-btn");
+
+    copyBtns.forEach((btn) => {
+        btn.addEventListener("click", async () => {
+            const email = btn.getAttribute("data-email");
+            if (email) {
+                try {
+                    await navigator.clipboard.writeText(email);
+                    const label = btn.querySelector(".email-label");
+                    if (label) {
+                        label.textContent = "¡Copiado!";
+                        label.classList.add("text-accent-orange");
+                        setTimeout(() => {
+                            label.textContent = "Email";
+                            label.classList.remove("text-accent-orange");
+                        }, 2000);
+                    }
+                } catch (err) {
+                    console.error("Error al copiar: ", err);
+                }
+            }
+        });
+    });
+</script>
