@@ -1,0 +1,147 @@
+{
+  "basics": {
+    "name": "Euddy Cabrera ",
+    "label": "Euddy Cabrera | Frontend Developer - Tecnólogo en desarrollo de software  ",
+    "email": "euddycabrera03@gmail.com",
+    "titular": "Frontend Developer de Santo Domingo, República Dominicana. especializado en el desarrollo de aplicaciones web únicas.",
+    "resumen": "Empece en la programación con block notes y HTML, CSS luego me adentre en el mundo hasta acaba siendo Tecnólogo en desarrollo de software.",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "EJCP3",
+        "url": "https://github.com/EJCP3"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "Euddy Cabrera",
+        "url": "https://www.linkedin.com/in/euddycabrera/"
+      }
+    ]
+  },
+  "fondo": {
+    "movil": [
+      "/movil/BM1.webp",
+      "/movil/BM2.jpg",
+      "/movil/BM3.jpg",
+      "/movil/BM4.jpg",
+      "/movil/BM5.jpg",
+      "/movil/BM6.jpg",
+      "/movil/BM7.jpg",
+      "/movil/BM8.jpg",
+      "/movil/BM9.jpg",
+      "/movil/BM10.jpg"
+    ],
+
+    "desktop": [
+      "/desktop/BP1.jpg",
+      "/desktop/BP2.svg",
+      "/desktop/BP3.svg",
+      "/desktop/BP4.png",
+      "/desktop/BP5.jpg",
+      "/desktop/BP6.jpg",
+      "/desktop/BP7.jpg",
+      "/desktop/BP8.jpg",
+      "/desktop/BP9.jpg",
+      "/desktop/BP10.jpg"
+    ]
+  },
+
+  "projects": [
+   {
+      "name": "MiniTicker",
+      "img": "/proyecto/miniticker2.png",
+      "imgs" : [
+        "/proyecto/miniticker1.png",
+        "/proyecto/miniticker2.png",
+        "/proyecto/miniticker3.png",
+        "/proyecto/miniticker4.png",
+        "/proyecto/miniticker5.png"
+      ],
+      "description": "El proyecto consiste en una aplicación web de múltiples páginas (MPA), crear solicitudes de servicio asignadas a diferentes áreas de una empresa.",
+      "technologies": ["vue.js", "tailwind CSS", "daisyUI", "net"],
+      "github": "https://github.com/EJCP3/MiniTickerApp/"
+      
+    },
+
+    {
+      "name": "Gestor de inventario",
+      "img": "/proyecto/gestorInventario2.png",
+      "imgs" : [
+        "/proyecto/gestorInventario1.png",
+        "/proyecto/gestorInventario2.png",
+        "/proyecto/gestorInventario3.png",
+        "/proyecto/gestorInventario4.png",
+        "/proyecto/gestorInventario5.png",
+        "/proyecto/gestorInventario6.png",
+        "/proyecto/gestorInventario7.png",
+        "/proyecto/gestorInventario8.png",
+        "/proyecto/gestorInventario9.png",
+        "/proyecto/gestorInventario10.png"
+      ],
+      "description": "Este proyecto consiste en una aplicación Full-Stack diseñada para gestionar productos, clientes y ventas",
+      "technologies": ["vue.js", "tailwind CSS", "daisyUI", "net"],
+      "github": "https://github.com/EJCP3/Prueba-Tecnica--Full-Stack/tree/main"
+     
+    },
+
+   
+    {
+      "name": "Rest Countries Api",
+      "img": "/proyecto/countries.jpeg",
+      "imgs" : [
+        "/proyecto/countries.jpeg",
+        "/proyecto/countries1.jpeg"
+      ],
+      "description": "Pagina para ver todos los países por medio de consumir una API y pudiendo ver mas detalle sobre el país.",
+      "technologies": ["React.js", "tailwind CSS", "daisyUI"],
+      "github": "https://github.com/EJCP3/rest-countries-api",
+      "demo": "https://countriesfind.netlify.app/"
+    },
+    {
+      "name": "Conecta 4",
+      "img": "/proyecto/conecta2.png",
+      "imgs" : [
+        "/proyecto/conecta1.png",
+        "/proyecto/conecta2.png",
+        "/proyecto/conecta3.png",
+        "/proyecto/conecta4.png"
+      ],
+      "description": "Pagina para jugar el juego conecta 4.",
+      "technologies": ["React.js", "tailwind CSS", "daisyUI"],
+      "github": "https://github.com/EJCP3/Conecta-4",
+      "demo": "https://conecta4iu.netlify.app/"
+    },
+    {
+      "name": "My task bard",
+      "img": "/proyecto/task.jpeg",
+      "imgs" : [
+        "/proyecto/task.jpeg",
+        "/proyecto/task1.jpeg"
+      ],
+      "description": "Aplicación para gestionar tareas con un diseño minimalista y moderno.",
+      "technologies": ["React.js", "tailwind CSS"],
+      "github": "https://github.com/EJCP3/Memory-of-you",
+      "demo": "https://mytaskboardejcp.netlify.app"
+    }
+     
+     
+   
+
+  ],
+  "skills": [
+    "react.js",
+    "vue.js",
+    "net",
+    "javaScript",
+    "supabase",
+    "html",
+    "css",
+    "scss",
+    "tailwindcss",
+    "astro",
+    "figma",
+    "github",
+    "daisyUI",
+    "vite"
+  ]
+}

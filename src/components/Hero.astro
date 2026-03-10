@@ -1,0 +1,180 @@
+---
+interface Props {
+    name: string;
+    label: string;
+    titular: string;
+    resumen: string;
+    skills: string[];
+}
+const { name, label, titular, resumen, skills } = Astro.props;
+
+const nameParts = name.trim().split(" ");
+const firstName = nameParts[0];
+const lastName = nameParts.slice(1).join(" ");
+
+const skillSpriteIds: Record<string, string> = {
+    javascript: "javacript",
+    "vue.js": "vue",
+    "react.js": "react",
+    net: "net",
+    supabase: "supabase",
+    html: "html",
+    css: "css",
+    scss: "sass",
+    tailwindcss: "tailwind",
+    astro: "astro",
+    figma: "figma",
+    github: "github",
+    daisyui: "daisyui",
+    vite: "vite",
+};
+---
+
+<section
+    id="hero"
+    class="min-h-screen flex items-center relative overflow-hidden pt-20 hero-grid"
+>
+    <div
+        class="absolute rounded-full blur-[90px] pointer-events-none w-[520px] h-[520px] -top-[100px] -right-[80px]"
+        style="background: radial-gradient(circle, rgba(254,128,25,0.12), transparent 70%);"
+    >
+    </div>
+    <div
+        class="absolute rounded-full blur-[90px] pointer-events-none w-[380px] h-[380px] bottom-20 -left-[60px]"
+        style="background: radial-gradient(circle, rgba(131,165,152,0.1), transparent 70%);"
+    >
+    </div>
+
+    <div class="max-w-[1080px] mx-auto px-6 w-full">
+        <div class="relative z-2 w-full">
+            <div
+                class="hero-tag-dot inline-flex items-center gap-2 bg-bg2 border border-bg4 rounded-full px-4 py-1.5 text-[11px] text-accent-teal tracking-wider uppercase mb-7 animate-fade-up"
+            >
+                Disponible para contratación
+            </div>
+
+            <h1
+                class="font-sans font-extrabold leading-[0.95] tracking-[-2px] text-cream mb-2 animate-fade-up-1"
+                style="font-size: clamp(52px, 8vw, 96px);"
+            >
+                {firstName}<br /><span class="text-accent-orange"
+                    >{lastName}</span
+                >
+            </h1>
+
+          
+            <p
+                class="font-sans font-normal text-fg-dim tracking-wide mb-7 animate-fade-up-2"
+                style="font-size: clamp(18px, 2.5vw, 26px);"
+            >
+                <span class="text-accent-teal font-semibold">Frontend</span> Developer
+            </p>
+
+         
+            <p
+                class="max-w-[520px] text-sm text-fg-dim leading-[1.8] mb-12 animate-fade-up-3"
+            >
+            <span class="text-accent-orange text-xs font-semibold animate-bounce">¿Necesita una pagina o app web bonita e intuitiva?</span> 
+                {resumen}
+            </p>
+
+               <div
+                class="flex gap-4 items-center animate-fade-up-5 max-md:flex-col max-md:items-start mb-4"
+            >
+                <a
+                    href="#projects"
+                    class="inline-flex items-center gap-2.5 bg-accent-orange text-bg0 font-mono font-semibold text-[13px] tracking-wider px-7 py-3.5 rounded-[14px] no-underline transition-all duration-250 hover:bg-cream hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(254,128,25,0.3)]"
+                >
+                    <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        ><rect x="2" y="3" width="20" height="14" rx="2"
+                        ></rect><path d="M8 21h8m-4-4v4"></path></svg
+                    >
+                    Ver proyectos
+                </a>
+                <a
+                    href="/cv_EuddyCabrera.pdf"
+                    class="inline-flex items-center gap-2 bg-transparent text-fg-dim font-mono text-[13px] px-6 py-3.5 rounded-[14px] border border-bg4 no-underline transition-all duration-250 hover:text-accent-teal hover:border-accent-teal hover:bg-accent-teal/[0.05]"
+                >
+                   <svg
+                                            class="w-5 h-5 shrink-0"
+                                            viewBox="0 0 50 50"
+                                        >
+                                            <use
+                                                href={`/sprite.svg#cv`}
+                                            />
+                                        </svg>
+                    CV
+                </a>
+            </div>
+        </div>
+
+            <div
+                class="relative mt-7 mb-12 overflow-hidden carousel-mask animate-fade-up-4"
+            >
+                <div class="flex gap-2.5 w-max animate-ticker uppercase">
+                    {
+                        skills.map((skill) => {
+                            const spriteId =
+                                skillSpriteIds[skill.toLowerCase()];
+                            return (
+                                <div class="flex items-center gap-2 bg-bg2 border  border-bg4 rounded-[14px] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:border-accent-orange hover:bg-accent-orange/[0.07] hover:text-accent-orange  hover:shadow-[0_8px_24px_rgba(254,128,25,0.12)]">
+                                    {spriteId ? (
+                                        <svg
+                                            class="w-5 h-5 shrink-0"
+                                            viewBox="0 0 50 50"
+                                        >
+                                            <use
+                                                href={`/sprite.svg#${spriteId}`}
+                                            />
+                                        </svg>
+                                    ) : (
+                                        <span class="text-base leading-none">
+                                            🔧
+                                        </span>
+                                    )}
+                                    {skill}
+                                </div>
+                            );
+                        })
+                    }
+                    {
+                        skills.map((skill) => {
+                            const spriteId =
+                                skillSpriteIds[skill.toLowerCase()];
+                            return (
+                                <div class="flex items-center gap-2 bg-bg2 border border-bg4 rounded-[14px] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:border-accent-orange hover:bg-accent-orange/[0.07] hover:text-accent-orange  hover:shadow-[0_8px_24px_rgba(254,128,25,0.12)]">
+                                    {spriteId ? (
+                                        <svg
+                                            class="w-5 h-5 shrink-0"
+                                            viewBox="0 0 50 50"
+                                        >
+                                            <use
+                                                href={`/sprite.svg#${spriteId}`}
+                                            />
+                                        </svg>
+                                    ) : (
+                                        <span class="text-base leading-none">
+                                            🔧
+                                        </span>
+                                    )}
+                                    {skill}
+                                </div>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+
+         
+    </div>
+
+  
+</section>

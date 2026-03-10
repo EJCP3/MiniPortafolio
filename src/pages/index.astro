@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+import cvData from "../data/cv.json";
+
+const { basics, projects, skills, miniProjects } = cvData;
+---
+
+<Layout title={basics.label}>
+	<Navbar />
+	<Hero
+		name={basics.name}
+		label={basics.label}
+		titular={basics.titular}
+		resumen={basics.resumen}
+		skills={skills}
+	/>
+	<div class="divider"></div>
+	<Projects projects={projects} miniProjects={miniProjects} />
+	<div class="divider"></div>
+	<Contact
+		name={basics.name}
+		email={basics.email}
+		profiles={basics.profiles}
+	/>
+</Layout>
+
+<script>
+	// Scroll reveal
+	const reveals = document.querySelectorAll(".reveal");
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry, i) => {
+				if (entry.isIntersecting) {
+					setTimeout(
+						() => entry.target.classList.add("visible"),
+						i * 80,
+					);
+				}
+			});
+		},
+		{ threshold: 0.1 },
+	);
+
+	reveals.forEach((el) => observer.observe(el));
+</script>

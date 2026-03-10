@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+/* ─── CUSTOM THEME (Tailwind v4) ─────────────────────── */
+@theme {
+  --color-bg0: #1d2021;
+  --color-bg1: #282828;
+  --color-bg2: #32302f;
+  --color-bg3: #3c3836;
+  --color-bg4: #504945;
+  --color-fg: #ebdbb2;
+  --color-fg-dim: #a89984;
+  --color-fg-sub: #7c6f64;
+  --color-accent-orange: #fe8019;
+  --color-accent-orange-dim: #d65d0e;
+  --color-accent-teal: #83a598;
+  --color-accent-teal-d: #458588;
+  --color-accent-yellow: #fabd2f;
+  --color-accent-green: #8ec07c;
+  --color-accent-red: #fb4934;
+  --color-cream: #fbf1c7;
+
+  --radius-card: 14px;
+  --radius-card-lg: 20px;
+
+  --font-sans: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Animations registered in theme so Tailwind recognizes them */
+  --animate-fade-up: fadeUp 0.6s ease both;
+  --animate-fade-up-1: fadeUp 0.6s 0.1s ease both;
+  --animate-fade-up-2: fadeUp 0.6s 0.2s ease both;
+  --animate-fade-up-3: fadeUp 0.6s 0.3s ease both;
+  --animate-fade-up-4: fadeUp 0.6s 0.4s ease both;
+  --animate-fade-up-5: fadeUp 0.6s 0.5s ease both;
+  --animate-fade-left: fadeLeft 0.9s 0.7s ease both;
+  --animate-pulse-dot: pulse 2s infinite;
+  --animate-blink-cursor: blink 1s step-end infinite;
+  --animate-ticker: ticker 28s linear infinite;
+}
+
+/* ─── KEYFRAMES ──────────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translate(30px, -50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ─── GLOBAL RESET ───────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg0);
+  color: var(--color-fg);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ─── NOISE OVERLAY ──────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-orange-dim);
+  border-radius: 2px;
+}
+
+/* ─── DIVIDER ────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-bg3), transparent);
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── TICKER PAUSE ON HOVER ──────────────────────────── */
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* ─── HERO GRID LINES ────────────────────────────────── */
+.hero-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--color-bg2) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-bg2) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.3;
+}
+
+/* ─── HERO TAG GREEN DOT ─────────────────────────────── */
+.hero-tag-dot::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent-green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* ─── TECH CAROUSEL MASK ─────────────────────────────── */
+.carousel-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+/* ─── PROJECT CARD GLOW ──────────────────────────────── */
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card-lg);
+  background: linear-gradient(135deg, rgba(254, 128, 25, 0.04), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* ─── PROJECT IMAGE BG ───────────────────────────────── */
+.project-bg-1 {
+  background: linear-gradient(135deg, #32302f, #1d2021);
+}
+
+.project-bg-2 {
+  background: linear-gradient(135deg, #282828, #32302f);
+}
+
+.project-bg-3 {
+  background: linear-gradient(135deg, #1d2021, #282828);
+}
+
+.project-bg-4 {
+  background: linear-gradient(135deg, #32302f, #282828);
+}
+
+/* ─── ACCENT LINES ───────────────────────────────────── */
+.accent-line-orange {
+  background: linear-gradient(90deg, var(--color-accent-orange), transparent);
+}
+
+.accent-line-teal {
+  background: linear-gradient(90deg, var(--color-accent-teal), transparent);
+}
+
+.accent-line-yellow {
+  background: linear-gradient(90deg, var(--color-accent-yellow), transparent);
+}
+
+.accent-line-green {
+  background: linear-gradient(90deg, var(--color-accent-green), transparent);
+}
+
+/* ─── TAG COLORS ─────────────────────────────────────── */
+.tag-orange {
+  border-color: rgba(254, 128, 25, 0.3);
+  color: var(--color-accent-orange);
+  background: rgba(254, 128, 25, 0.06);
+}
+
+.tag-teal {
+  border-color: rgba(131, 165, 152, 0.3);
+  color: var(--color-accent-teal);
+  background: rgba(131, 165, 152, 0.06);
+}
+
+.tag-yellow {
+  border-color: rgba(250, 189, 47, 0.3);
+  color: var(--color-accent-yellow);
+  background: rgba(250, 189, 47, 0.06);
+}
+
+.tag-green {
+  border-color: rgba(142, 192, 124, 0.3);
+  color: var(--color-accent-green);
+  background: rgba(142, 192, 124, 0.06);
+}
+
+/* ─── CONTACT ARROW ──────────────────────────────────── */
+.contact-link::after {
+  content: '↗';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-fg-sub);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.contact-link:hover::after {
+  color: var(--color-accent-orange);
+  transform: translateY(-50%) translate(2px, -2px);
+}
+
+/* ─── CONTACT GLOW ───────────────────────────────────── */
+.contact-glow::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(254, 128, 25, 0.06), transparent 70%);
+  pointer-events: none;
+}
