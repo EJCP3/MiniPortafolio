@@ -1,9 +1,9 @@
 {
   "basics": {
     "name": "Euddy Cabrera ",
-    "label": "Euddy Cabrera | Frontend Developer - Tecnólogo en desarrollo de software  ",
+    "label": "Euddy Cabrera | Full Stack Developer - Tecnólogo en desarrollo de software  ",
     "email": "euddycabrera03@gmail.com",
-    "titular": "Frontend Developer de Santo Domingo, República Dominicana. especializado en el desarrollo de aplicaciones web únicas.",
+    "titular": "Full Stack Developer de Santo Domingo, República Dominicana. especializado en el desarrollo de aplicaciones web únicas.",
     "resumen": "Mi enfoque se centra en la creación de paginas/apps web modernas e interactivas con un código limpio, el rendimiento y una experiencia de usuario excepcional.",
     "profiles": [
       {
@@ -14,7 +14,7 @@
       {
         "network": "LinkedIn",
         "username": "Euddy Cabrera",
-        "url": "https://www.linkedin.com/in/euddycabrera/"
+        "url": "https://www.linkedin.com/in/ejcp/"
       }
     ]
   },
@@ -162,7 +162,7 @@
         "astro",
         "tailwind CSS"
       ],
-      "link": "https://ejcp.vercel.app/",
+      "link": "https://ejcp-plus.vercel.app/",
       "icon": "astro"
     },  
     {
