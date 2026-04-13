@@ -18,32 +18,6 @@
       }
     ]
   },
-  "fondo": {
-    "movil": [
-      "/movil/BM1.webp",
-      "/movil/BM2.jpg",
-      "/movil/BM3.jpg",
-      "/movil/BM4.jpg",
-      "/movil/BM5.jpg",
-      "/movil/BM6.jpg",
-      "/movil/BM7.jpg",
-      "/movil/BM8.jpg",
-      "/movil/BM9.jpg",
-      "/movil/BM10.jpg"
-    ],
-    "desktop": [
-      "/desktop/BP1.jpg",
-      "/desktop/BP2.svg",
-      "/desktop/BP3.svg",
-      "/desktop/BP4.png",
-      "/desktop/BP5.jpg",
-      "/desktop/BP6.jpg",
-      "/desktop/BP7.jpg",
-      "/desktop/BP8.jpg",
-      "/desktop/BP9.jpg",
-      "/desktop/BP10.jpg"
-    ]
-  },
   "projects": [
     {
       "name": "MiniTicker",
@@ -63,6 +37,31 @@
         "net"
       ],
       "github": "https://github.com/EJCP3/MiniTickerApp/"
+    },
+    {
+      "name": "DominicanGo",
+      "img": "/proyecto/dominicango1.jpg",
+      "imgs": [
+        "/proyecto/dominicango1.jpg",
+        "/proyecto/dominicango2.jpg",
+        "/proyecto/dominicango3.jpg",
+        "/proyecto/dominicango4.jpg",
+        "/proyecto/dominicango5.jpg"
+      ],
+      "description": "DominicanGo es un proyecto web interactivo enfocado en dar a conocer la riqueza natural y cultural de la República Dominicana.",
+      "technologies": [
+        "Astro",
+        "Vue",
+        "TypeScript",
+        "GSAP",
+        "tailwind CSS",
+        "daisyUI",
+        "Node.js",
+        "Express",
+        "PostgreSQL"
+      ],
+      "demo": "http://dominicango.45.90.237.199.sslip.io",
+      "github": "https://github.com/EJCP3/DominicanGo"
     },
     {
       "name": "Gestor de inventario",
@@ -164,7 +163,7 @@
       ],
       "link": "https://ejcp-plus.vercel.app/",
       "icon": "astro"
-    },  
+    },
     {
       "name": "Tienda de dulces",
       "description": "Tienda de dulces con un diseño minimalista y moderno.",
@@ -184,7 +183,7 @@
       "link": "https://github.com/EJCP3/MiniTickerAPI",
       "icon": "net"
     },
-     {
+    {
       "name": "Api sistema de inventario",
       "description": "Api para gestionar productos, clientes y ventas.",
       "technologies": [
