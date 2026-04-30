@@ -8,21 +8,40 @@ import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/code.svg" />
     <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
     <meta
       name="description"
-      content="Euddy Cabrera — Full Stack Developer portfolio."
+      content="¿Necesita una pagina o app web bonita e intuitiva? Mi enfoque se centra en la creación de paginas/apps web modernas e interactivas con un código limpio, el rendimiento y una experiencia de usuario excepcional."
     />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Euddy Cabrera | Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="¿Necesita una pagina o app web bonita e intuitiva? Mi enfoque se centra en la creación de paginas/apps web modernas e interactivas con un código limpio, el rendimiento y una experiencia de usuario excepcional."
+    />
+    <meta property="og:image" content="/captura1.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Euddy Cabrera | Full Stack Developer" />
+    <meta
+      property="twitter:description"
+      content="¿Necesita una pagina o app web bonita e intuitiva? Mi enfoque se centra en la creación de paginas/apps web modernas e interactivas con un código limpio, el rendimiento y una experiencia de usuario excepcional."
+    />
+    <meta property="twitter:image" content="/captura1.jpg" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <title>{title}</title>
   </head>
   <body>
     <slot />

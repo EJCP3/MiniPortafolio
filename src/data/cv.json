@@ -1,12 +1,12 @@
 {
   "basics": {
     "name": "Euddy Cabrera ",
-    "label": "Euddy Cabrera | Full Stack Developer - Tecnólogo en desarrollo de software  ",
+    "label": "Euddy Cabrera | Full Stack Developer",
     "email": "euddycabrera03@gmail.com",
     "titular": "Full Stack Developer de Santo Domingo, República Dominicana. especializado en el desarrollo de aplicaciones web únicas.",
     "resumen": "Mi enfoque se centra en la creación de paginas/apps web modernas e interactivas con un código limpio, el rendimiento y una experiencia de usuario excepcional.",
     "profiles": [
-      {
+      { 
         "network": "GitHub",
         "username": "EJCP3",
         "url": "https://github.com/EJCP3"
@@ -135,6 +135,45 @@
       ],
       "github": "https://github.com/EJCP3/Memory-of-you",
       "demo": "https://mytaskboardejcp.netlify.app"
+    },
+    {
+      "name": "DentalCare Pro",
+      "img": "/proyecto/dentalcare.png",
+      "imgs": [],
+      "description": "Clínica dental enfocada en Odontología Integral & Especializada, transformando sonrisas a través del arte y la ciencia clínica.",
+      "technologies": [
+        "Nuxt",
+        "GSAP",
+        "NuxtUI",
+        "Tailwind CSS"
+      ],
+      "demo": "https://clinica-dental-01-5pc2lfxiw-ejcp3s-projects.vercel.app/"
+    },
+    {
+      "name": "Courtneyo",
+      "img": "/proyecto/courtneyo.png",
+      "imgs": [],
+      "description": "Sitio web que presenta la odontología como una forma de arte, redefiniendo la experiencia dental a través de la arquitectura estética y la precisión clínica.",
+      "technologies": [
+        "Nuxt",
+        "GSAP",
+        "NuxtUI",
+        "Tailwind CSS"
+      ],
+      "demo": "https://clinica-dental-02-o1xxy3opv-ejcp3s-projects.vercel.app/"
+    },
+    {
+      "name": "Soma Dental Studio",
+      "img": "/proyecto/soma.png",
+      "imgs": [],
+      "description": "Estudio dental especializado en implantes, carillas, ortodoncia y blanqueamiento, ofreciendo una experiencia dental moderna y completa.",
+      "technologies": [
+        "Nuxt",
+        "GSAP",
+        "NuxtUI",
+        "Tailwind CSS"
+      ],
+      "demo": "https://clinica-dental-clinica-dental-03-5kbjt2nq6-ejcp3s-projects.vercel.app/"
     }
   ],
   "skills": [
@@ -151,7 +190,10 @@
     "figma",
     "github",
     "daisyUI",
-    "vite"
+    "vite",
+    "nuxt",
+    "gsap",
+    "nuxtUI"
   ],
   "miniProjects": [
     {
