@@ -1,10 +1,10 @@
 {
   "basics": {
-    "name": "Euddy Cabrera ",
+    "name": "Euddy Cabrera",
     "label": "Euddy Cabrera | Full Stack Developer",
     "email": "euddycabrera03@gmail.com",
-    "titular": "Full Stack Developer de Santo Domingo, República Dominicana. especializado en el desarrollo de aplicaciones web únicas.",
-    "resumen": "Mi enfoque se centra en la creación de paginas/apps web modernas e interactivas con un código limpio, el rendimiento y una experiencia de usuario excepcional.",
+    "titular": "Full Stack Developer de Santo Domingo, República Dominicana. Especializado en el desarrollo de aplicaciones web únicas.",
+    "resumen": "Mi enfoque se centra en la creación de páginas/apps web modernas e interactivas con un código limpio, alto rendimiento y una experiencia de usuario excepcional.",
     "profiles": [
       { 
         "network": "GitHub",
@@ -29,12 +29,12 @@
         "/proyecto/miniticker4.png",
         "/proyecto/miniticker5.png"
       ],
-      "description": "El proyecto consiste en una aplicación web de múltiples páginas (MPA), crear solicitudes de servicio asignadas a diferentes áreas de una empresa.",
+      "description": "Aplicación web de múltiples páginas (MPA) para crear y gestionar solicitudes de servicio asignadas a diferentes áreas de una empresa.",
       "technologies": [
-        "vue.js",
-        "tailwind CSS",
+        "Vue.js",
+        "Tailwind CSS",
         "daisyUI",
-        "net"
+        ".NET"
       ],
       "github": "https://github.com/EJCP3/MiniTickerApp/"
     },
@@ -54,7 +54,7 @@
         "Vue",
         "TypeScript",
         "GSAP",
-        "tailwind CSS",
+        "Tailwind CSS",
         "daisyUI",
         "Node.js",
         "Express",
@@ -78,26 +78,26 @@
         "/proyecto/gestorInventario9.png",
         "/proyecto/gestorInventario10.png"
       ],
-      "description": "Este proyecto consiste en una aplicación Full-Stack diseñada para gestionar productos, clientes y ventas",
+      "description": "Aplicación Full Stack diseñada para gestionar productos, clientes y ventas de manera eficiente.",
       "technologies": [
-        "vue.js",
-        "tailwind CSS",
+        "Vue.js",
+        "Tailwind CSS",
         "daisyUI",
-        "net"
+        ".NET"
       ],
       "github": "https://github.com/EJCP3/Prueba-Tecnica--Full-Stack/tree/main"
     },
     {
-      "name": "Rest Countries Api",
+      "name": "Rest Countries API",
       "img": "/proyecto/countries.jpeg",
       "imgs": [
         "/proyecto/countries.jpeg",
         "/proyecto/countries1.jpeg"
       ],
-      "description": "Pagina para ver todos los países por medio de consumir una API y pudiendo ver mas detalle sobre el país.",
+      "description": "Página para explorar países mediante el consumo de una API, permitiendo visualizar detalles específicos de cada nación.",
       "technologies": [
         "React.js",
-        "tailwind CSS",
+        "Tailwind CSS",
         "daisyUI"
       ],
       "github": "https://github.com/EJCP3/rest-countries-api",
@@ -112,17 +112,17 @@
         "/proyecto/conecta3.png",
         "/proyecto/conecta4.png"
       ],
-      "description": "Pagina para jugar el juego conecta 4.",
+      "description": "Plataforma web interactiva para jugar al clásico juego Conecta 4.",
       "technologies": [
         "React.js",
-        "tailwind CSS",
+        "Tailwind CSS",
         "daisyUI"
       ],
       "github": "https://github.com/EJCP3/Conecta-4",
       "demo": "https://conecta4iu.netlify.app/"
     },
     {
-      "name": "My task bard",
+      "name": "My Task Board",
       "img": "/proyecto/task.jpeg",
       "imgs": [
         "/proyecto/task.jpeg",
@@ -131,7 +131,7 @@
       "description": "Aplicación para gestionar tareas con un diseño minimalista y moderno.",
       "technologies": [
         "React.js",
-        "tailwind CSS"
+        "Tailwind CSS"
       ],
       "github": "https://github.com/EJCP3/Memory-of-you",
       "demo": "https://mytaskboardejcp.netlify.app"
@@ -139,8 +139,18 @@
     {
       "name": "DentalCare Pro",
       "img": "/proyecto/dentalcare.png",
-      "imgs": [],
-      "description": "Clínica dental enfocada en Odontología Integral & Especializada, transformando sonrisas a través del arte y la ciencia clínica.",
+      "imgs": [
+        "/proyecto/dentalcare.png",
+        "/proyecto/dentalcare2.png",
+        "/proyecto/dentalcare3.png",
+        "/proyecto/dentalcare4.png",
+        "/proyecto/dentalcare5.png",
+        "/proyecto/dentalcare6.png",
+        "/proyecto/dentalcare7.png",
+        "/proyecto/dentalcare8.png",
+        "/proyecto/dentalcare9.png"
+      ],
+      "description": "Clínica dental enfocada en Odontología Integral y Especializada, transformando sonrisas a través del arte y la ciencia clínica.",
       "technologies": [
         "Nuxt",
         "GSAP",
@@ -152,8 +162,15 @@
     {
       "name": "Courtneyo",
       "img": "/proyecto/courtneyo.png",
-      "imgs": [],
-      "description": "Sitio web que presenta la odontología como una forma de arte, redefiniendo la experiencia dental a través de la arquitectura estética y la precisión clínica.",
+      "imgs": [
+        "/proyecto/courtneyo.png",
+        "/proyecto/courtneyo2.png",
+        "/proyecto/courtneyo3.png",
+        "/proyecto/courtneyo4.png",
+        "/proyecto/courtneyo5.png",
+        "/proyecto/courtneyo6.png"
+      ],
+      "description": "Sitio web que presenta la odontología como una forma de arte, redefiniendo la experiencia dental mediante arquitectura estética y precisión clínica.",
       "technologies": [
         "Nuxt",
         "GSAP",
@@ -165,7 +182,13 @@
     {
       "name": "Soma Dental Studio",
       "img": "/proyecto/soma.png",
-      "imgs": [],
+      "imgs": [
+        "/proyecto/soma.png",
+        "/proyecto/soma2.png",
+        "/proyecto/soma3.png",
+        "/proyecto/soma4.png",
+        "/proyecto/soma5.png"
+      ],
       "description": "Estudio dental especializado en implantes, carillas, ortodoncia y blanqueamiento, ofreciendo una experiencia dental moderna y completa.",
       "technologies": [
         "Nuxt",
@@ -177,31 +200,31 @@
     }
   ],
   "skills": [
-    "react.js",
-    "vue.js",
-    "net",
-    "javaScript",
-    "supabase",
-    "html",
-    "css",
-    "scss",
-    "tailwindcss",
-    "astro",
-    "figma",
-    "github",
+    "React.js",
+    "Vue.js",
+    ".NET",
+    "JavaScript",
+    "Supabase",
+    "HTML",
+    "CSS",
+    "SCSS",
+    "Tailwind CSS",
+    "Astro",
+    "Figma",
+    "GitHub",
     "daisyUI",
-    "vite",
-    "nuxt",
-    "gsap",
-    "nuxtUI"
+    "Vite",
+    "Nuxt",
+    "GSAP",
+    "NuxtUI"
   ],
   "miniProjects": [
     {
       "name": "Portfolio v1",
-      "description": "Portafolio original con un diseño creativo e interactivo",
+      "description": "Portafolio original con un diseño creativo e interactivo.",
       "technologies": [
-        "astro",
-        "tailwind CSS"
+        "Astro",
+        "Tailwind CSS"
       ],
       "link": "https://ejcp-plus.vercel.app/",
       "icon": "astro"
@@ -211,25 +234,25 @@
       "description": "Tienda de dulces con un diseño minimalista y moderno.",
       "technologies": [
         "React.js",
-        "tailwind CSS"
+        "Tailwind CSS"
       ],
       "link": "https://productlistwithcart003.netlify.app/",
       "icon": "react"
     },
     {
-      "name": "Api Miniticker",
-      "description": "Api para gestionar solicitudes de servicio asignadas a diferentes áreas de una empresa.",
+      "name": "API MiniTicker",
+      "description": "API para gestionar solicitudes de servicio asignadas a diferentes áreas de una empresa.",
       "technologies": [
-        "net"
+        ".NET"
       ],
       "link": "https://github.com/EJCP3/MiniTickerAPI",
       "icon": "net"
     },
     {
-      "name": "Api sistema de inventario",
-      "description": "Api para gestionar productos, clientes y ventas.",
+      "name": "API Sistema de Inventario",
+      "description": "API para gestionar productos, clientes y ventas.",
       "technologies": [
-        "net"
+        ".NET"
       ],
       "link": "https://github.com/EJCP3/Prueba-Tecnica--Full-Stack/tree/main/InventarioApi",
       "icon": "net"

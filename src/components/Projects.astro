@@ -1,11 +1,14 @@
 ---
+import ProjectCard from "./projects/ProjectCard.astro";
+import MiniProjectCard from "./projects/MiniProjectCard.astro";
+
 interface Project {
     name: string;
     img: string;
     imgs: string[];
     description: string;
     technologies: string[];
-    github: string;
+    github?: string;
     demo?: string;
 }
 
@@ -38,14 +41,13 @@ const bgColors = [
 ];
 const tagColors = ["tag-orange", "tag-teal", "tag-yellow", "tag-green"];
 
-// Bento grid sizing classes for visual variety
 const bentoSizes = [
-    "md:col-span-2 md:row-span-1",  // wide
-    "md:col-span-1 md:row-span-1",  // normal
-    "md:col-span-1 md:row-span-1",  // normal
-    "md:col-span-1 md:row-span-1",  // normal
-    "md:col-span-1 md:row-span-1",  // normal
-    "md:col-span-2 md:row-span-1",  // wide
+    "md:col-span-2 md:row-span-1",
+    "md:col-span-1 md:row-span-1",
+    "md:col-span-1 md:row-span-1",
+    "md:col-span-1 md:row-span-1",
+    "md:col-span-1 md:row-span-1",
+    "md:col-span-2 md:row-span-1",
 ];
 
 const bentoBorders = [
@@ -70,15 +72,10 @@ const bentoAccent = [
 <section id="projects" class="py-[120px] relative">
     <div class="max-w-[1080px] mx-auto px-6">
         <header class="text-center mb-[60px] reveal">
-            <p
-                class="text-[8px] tracking-[0.2em] uppercase text-accent-orange mb-3"
-            >
+            <p class="text-[8px] tracking-[0.2em] uppercase text-accent-orange mb-3">
                 // proyectos destacados
             </p>
-            <h2
-                class=" font-extrabold text-cream tracking-[-1.5px] leading-none text-xl"
-               
-            >
+            <h2 class="font-extrabold text-cream tracking-[-1.5px] leading-none text-xl">
                  Desde interfaces hasta APIs — sistemas completos creados para escalar
             </h2>
             <p class="mt-3.5 text-accent-teal-d text-xs max-w-[480px] mx-auto">
@@ -86,131 +83,20 @@ const bentoAccent = [
             </p>
         </header>
 
-        <div
-            class="grid grid-cols-[repeat(auto-fill,minmax(480px,1fr))] gap-6 max-sm:grid-cols-1 max-md:grid-cols-1"
-        >
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(480px,1fr))] gap-6 max-sm:grid-cols-1 max-md:grid-cols-1">
             {
                 projects.map((project, i) => (
-                    <article
-                        class="project-card bg-bg1 border border-bg3 rounded-card-lg overflow-hidden transition-all duration-300 relative hover:-translate-y-1.5 hover:border-accent-orange/25 hover:shadow-[0_24px_60px_rgba(0,0,0,0.4),0_0_0_1px_rgba(254,128,25,0.1)] reveal flex flex-col"
-                        style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);"
-                    >
-                        <div class={`h-[3px] w-full ${accentColors[i % 4]}`} />
-                        
-                        <!-- Image carousel -->
-                        <div
-                            class={`project-carousel w-full aspect-video relative overflow-hidden ${bgColors[i % 4]}`}
-                            data-interval="3500"
-                        >
-                            {project.imgs && project.imgs.length > 1 ? (
-                                <>
-                                    {project.imgs.map((imgSrc, imgIdx) => (
-                                        <img
-                                            src={imgSrc}
-                                            alt={`${project.name} - ${imgIdx + 1}`}
-                                            class={`carousel-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'}`}
-                                            loading="lazy"
-                                        />
-                                    ))}
-                                    <!-- Dot indicators -->
-                                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-                                        {project.imgs.map((_: string, dotIdx: number) => (
-                                            <button
-                                                class={`carousel-dot w-1.5 h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer ${dotIdx === 0 ? 'bg-accent-orange w-4' : 'bg-fg-sub/40'}`}
-                                                data-index={dotIdx}
-                                                aria-label={`Imagen ${dotIdx + 1}`}
-                                            />
-                                        ))}
-                                    </div>
-                                </>
-                            ) : (
-                                <img
-                                    src={project.img}
-                                    alt={project.name}
-                                    class="w-full h-full object-cover block"
-                                    loading="lazy"
-                                />
-                            )}
-                        </div>
-
-                        <div class="p-6 relative z-2">
-                            <p class="text-[11px] text-fg-sub tracking-[0.15em] mb-2">
-                                {String(i + 1).padStart(2, "0")} —{" "}
-                                {project.name}
-                            </p>
-                            <h3 class="font-sans text-xl font-bold text-cream mb-2.5 tracking-tight">
-                                {project.name}
-                            </h3>
-                            <p class="text-[13px] text-fg-dim leading-[1.75] mb-[18px]">
-                                {project.description}
-                            </p>
-                            <ul class="flex flex-wrap gap-1.5 mb-[22px] p-0 m-0 list-none">
-                                {project.technologies.map((tech, j) => (
-                                    <li
-                                        class={`text-[10px] tracking-wider font-medium px-2.5 py-1 rounded-full border border-bg4 text-fg-sub uppercase ${tagColors[j % 4]}`}
-                                    >
-                                        {tech}
-                                    </li>
-                                ))}
-                            </ul>
-                            <div class="flex gap-2.5">
-                                {project.demo && (
-                                    <a
-                                        href={project.demo}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="flex-1 inline-flex items-center justify-center gap-[7px] bg-accent-orange text-bg0 font-mono font-semibold text-xs py-[11px] px-4 rounded-card no-underline transition-all duration-200 hover:bg-cream hover:-translate-y-px"
-                                    >
-                                        <svg
-                                            width="12"
-                                            height="12"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2.5"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        >
-                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                            <polyline points="15 3 21 3 21 9" />
-                                            <line
-                                                x1="10"
-                                                y1="14"
-                                                x2="21"
-                                                y2="3"
-                                            />
-                                        </svg>
-                                        Live Demo
-                                    </a>
-                                )}
-                                <a
-                                    href={project.github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="flex-1 inline-flex items-center justify-center gap-[7px] bg-transparent text-fg-dim font-mono text-xs py-[11px] px-4 rounded-card border border-bg4 no-underline transition-all duration-200 hover:text-cream hover:border-bg3 hover:bg-bg2"
-                                >
-                                    <svg
-                                        width="13"
-                                        height="13"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                                    </svg>
-                                    GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </article>
+                    <ProjectCard 
+                        project={project} 
+                        index={i}
+                        accentColor={accentColors[i % 4]}
+                        bgColor={bgColors[i % 4]}
+                        tagColors={tagColors}
+                    />
                 ))
             }
         </div>
 
-        <!-- Bento grid for mini projects -->
         {miniProjects.length > 0 && (
             <aside aria-label="Más proyectos" class="mt-20 reveal">
                 <header class="flex items-center gap-4 mb-8">
@@ -221,53 +107,17 @@ const bentoAccent = [
 
                 <div class="grid grid-cols-1 md:grid-cols-[repeat(3,minmax(200px,1fr))] gap-3 auto-rows-fr">
                     {miniProjects.map((mini, i) => (
-                        <a
-                            href={mini.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class={`group bg-bg1 border rounded-card-lg p-5 no-underline transition-all duration-300 relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.3)] ${bentoSizes[i % 6]} ${bentoBorders[i % 6]}`}
-                        >
-                            <!-- Subtle gradient glow on hover -->
-                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={`background: radial-gradient(circle at 30% 50%, rgba(254,128,25,0.04), transparent 70%);`}></div>
-
-                            <div class="relative z-2 flex flex-col h-full">
-                                <!-- Header: icon + name -->
-                                <div class="flex items-center gap-3 mb-3">
-                                    {mini.icon && (
-                                        <div class="w-9 h-9 rounded-[10px] bg-bg2 border border-bg4 flex items-center justify-center shrink-0">
-                                            <svg class="w-5 h-5" viewBox="0 0 50 50">
-                                                <use href={`/sprite.svg#${mini.icon}`} />
-                                            </svg>
-                                        </div>
-                                    )}
-                                    <h4 class={`font-sans font-bold text-sm tracking-tight ${bentoAccent[i % 6]} group-hover:text-cream transition-colors`}>
-                                        {mini.name}
-                                    </h4>
-                                    <svg class="w-3.5 h-3.5 text-fg-sub ml-auto opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" />
-                                    </svg>
-                                </div>
-
-                                <!-- Description -->
-                                <p class="text-xs text-fg-dim leading-relaxed mb-auto">
-                                    {mini.description}
-                                </p>
-
-                                <!-- Tech tags -->
-                                <ul class="flex flex-wrap gap-1.5 mt-3 p-0 m-0 list-none">
-                                    {mini.technologies.map((tech, j) => (
-                                        <li class="text-[9px] tracking-wider font-medium px-2 py-0.5 rounded-full bg-bg2 border border-bg4 text-fg-sub uppercase">
-                                            {tech}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </a>
+                        <MiniProjectCard 
+                            mini={mini}
+                            index={i}
+                            sizeClass={bentoSizes[i % 6]}
+                            borderClass={bentoBorders[i % 6]}
+                            accentClass={bentoAccent[i % 6]}
+                        />
                     ))}
                 </div>
             </aside>
         )}
-
     </div>
 </section>
 
@@ -311,10 +161,8 @@ const bentoAccent = [
         }
       }
 
-     
       timer = setInterval(next, interval);
 
-      
       carousel.addEventListener('mouseenter', () => { paused = true; });
       carousel.addEventListener('mouseleave', () => { paused = false; });
 
@@ -332,9 +180,6 @@ const bentoAccent = [
     });
   }
 
-  // Run on page load
   initCarousels();
-
   document.addEventListener('astro:after-swap', initCarousels);
 </script>
-

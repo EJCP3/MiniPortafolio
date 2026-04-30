@@ -12,6 +12,7 @@ interface Props {
 }
 
 const { name, email, profiles } = Astro.props;
+const reversedEmail = email.split("").reverse().join("");
 
 const nameParts = name.trim().split(" ");
 const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
@@ -37,7 +38,7 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
             >
                 <li class="w-full">
                     <button
-                        data-email={email}
+                        data-conf={reversedEmail}
                         class="contact-link copy-email-btn flex items-center gap-3.5 bg-bg1 border border-bg3 rounded-[14px] py-[18px] px-5 no-underline text-fg transition-all duration-250 relative overflow-hidden hover:-translate-y-[3px] hover:border-accent-orange hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] reveal w-full text-left cursor-pointer"
                     >
                         <div
@@ -53,8 +54,11 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
                             >
                                 Email
                             </p>
-                            <p class="text-[13px] font-medium text-fg">
-                                {email}
+                            <p 
+                                class="text-[13px] font-medium text-fg"
+                                style="unicode-bidi: bidi-override; direction: rtl; text-align: left;"
+                            >
+                                {reversedEmail}
                             </p>
                         </div>
                     </button>
@@ -143,27 +147,36 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
 </section>
 
 <script>
-    const copyBtns = document.querySelectorAll(".copy-email-btn");
-
-    copyBtns.forEach((btn) => {
-        btn.addEventListener("click", async () => {
-            const email = btn.getAttribute("data-email");
-            if (email) {
-                try {
-                    await navigator.clipboard.writeText(email);
-                    const label = btn.querySelector(".email-label");
-                    if (label) {
-                        label.textContent = "¡Copiado!";
-                        label.classList.add("text-accent-orange");
-                        setTimeout(() => {
-                            label.textContent = "Email";
-                            label.classList.remove("text-accent-orange");
-                        }, 2000);
+    function initEmail() {
+        const copyBtns = document.querySelectorAll(".copy-email-btn");
+        copyBtns.forEach((btn) => {
+            btn.addEventListener("click", async () => {
+                const conf = btn.getAttribute("data-conf");
+                if (conf) {
+                    // Revertimos la cadena para que al copiar sea el email correcto
+                    const originalEmail = conf.split("").reverse().join("");
+                    try {
+                        await navigator.clipboard.writeText(originalEmail);
+                        const label = btn.querySelector(".email-label");
+                        if (label) {
+                            label.textContent = "¡Copiado!";
+                            label.classList.add("text-accent-orange");
+                            setTimeout(() => {
+                                label.textContent = "Email";
+                                label.classList.remove("text-accent-orange");
+                            }, 2000);
+                        }
+                    } catch (err) {
+                        console.error("Error al copiar: ", err);
                     }
-                } catch (err) {
-                    console.error("Error al copiar: ", err);
                 }
-            }
+            });
         });
-    });
+    }
+
+    // Ejecutar al cargar
+    initEmail();
+
+    // Re-ejecutar si se usa ViewTransitions de Astro
+    document.addEventListener("astro:after-swap", initEmail);
 </script>
