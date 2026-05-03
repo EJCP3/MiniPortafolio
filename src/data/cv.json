@@ -85,7 +85,8 @@
         "daisyUI",
         ".NET"
       ],
-      "github": "https://github.com/EJCP3/Prueba-Tecnica--Full-Stack/tree/main"
+      "github": "https://github.com/EJCP3/Prueba-Tecnica--Full-Stack/tree/main",
+      "demo": "https://mi-inventario-venta.vercel.app/login"
     },
     {
       "name": "Rest Countries API",
@@ -255,6 +256,7 @@
         ".NET"
       ],
       "link": "https://github.com/EJCP3/Prueba-Tecnica--Full-Stack/tree/main/InventarioApi",
+      "demo": "http://myinventario.runasp.net/index.html",
       "icon": "net"
     }
   ]
