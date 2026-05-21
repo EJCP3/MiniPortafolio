@@ -60,7 +60,7 @@
         "Express",
         "PostgreSQL"
       ],
-      "demo": "http://dominicango.45.90.237.199.sslip.io",
+      "demo": "https://dominican-go.vercel.app/",
       "github": "https://github.com/EJCP3/DominicanGo"
     },
     {
