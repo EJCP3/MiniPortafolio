@@ -6,7 +6,8 @@ import Projects from "../components/Projects.astro";
 import Contact from "../components/Contact.astro";
 import cvData from "../data/cv.json";
 
-const { basics, projects, skills, miniProjects } = cvData;
+const { basics, skills, miniProjects } = cvData;
+const projects = cvData.projects.filter(p => !p.hidden);
 ---
 
 <Layout title={basics.label}>
