@@ -260,5 +260,16 @@
       "demo": "http://myinventario.runasp.net/index.html",
       "icon": "net"
     }
+  ],
+  "experience": [
+    {
+      "company": "Dirección General de Aduanas (DGA)",
+      "position": "Pasante Desarrollador Web",
+      "startDate": "2025-11",
+      "endDate": "2026-02",
+      "location": "Santo Domingo",
+      "description": "Participé en el desarrollo de aplicaciones web orientadas a la gestión interna. Desarrollé una aplicación Full-Stack para la gestión de productos, clientes y ventas, implementando API REST, autenticación JWT, arquitectura en capas, principios SOLID, pruebas unitarias y un panel administrativo en Vue.js. Colaboré en equipo en un sistema de inventario (módulos frontend para control de productos, movimientos, reportes). Desarrollé un Sistema de Solicitudes Internas (Mesa de Servicios) con control de estados, roles, trazabilidad, y filtros avanzados.",
+      "technologies": ["ASP.NET Core", "SQL Server", "Vue.js", "Tailwind CSS"]
+    }
   ]
 }

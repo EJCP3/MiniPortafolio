@@ -3,10 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
 import Projects from "../components/Projects.astro";
+import Experience from "../components/Experience.astro";
 import Contact from "../components/Contact.astro";
 import cvData from "../data/cv.json";
 
-const { basics, skills, miniProjects } = cvData;
+const { basics, skills, miniProjects, experience } = cvData;
 const projects = cvData.projects.filter(p => !p.hidden);
 ---
 
@@ -19,6 +20,8 @@ const projects = cvData.projects.filter(p => !p.hidden);
 		resumen={basics.resumen}
 		skills={skills}
 	/>
+	<div class="divider"></div>
+	<Experience experience={experience} />
 	<div class="divider"></div>
 	<Projects projects={projects} miniProjects={miniProjects} />
 	<div class="divider"></div>
