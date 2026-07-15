@@ -36,6 +36,61 @@
   --animate-pulse-dot: pulse 2s infinite;
   --animate-blink-cursor: blink 1s step-end infinite;
   --animate-ticker: ticker 28s linear infinite;
+
+  /* Custom Theme Utilities */
+  --shadow-hard-card: var(--card-shadow);
+  --shadow-hard-pill: var(--pill-shadow);
+}
+
+:root {
+  --card-border-width: 1px;
+  --card-shadow: none;
+  --pill-shadow: none;
+  --pill-border-width: 1px;
+  --glow-opacity: 1;
+  --border-color-base: var(--color-bg3);
+  --border-color-card: rgba(250, 189, 47, 0.2); /* accent-yellow/20 */
+  --border-color-card-hover: rgba(250, 189, 47, 0.5);
+  --bg-noise-opacity: 0.035;
+  --divider-color: var(--color-bg3);
+}
+
+.light {
+  --color-bg0: #FFFDF5;
+  --color-bg1: #FFFFFF;
+  --color-bg2: #f4f4f4;
+  --color-bg3: #ffffff;
+  --color-bg4: #e0e0e0;
+  --color-fg: #000000;
+  --color-fg-dim: #222222;
+  --color-fg-sub: #444444;
+  
+  /* High contrast punchy colors for light mode text/accents */
+  --color-accent-orange: #FF0055; /* deep neon pink/red */
+  --color-accent-orange-dim: #cc0044;
+  --color-accent-teal: #0052FF; /* deep blue */
+  --color-accent-teal-d: #0040cc;
+  --color-accent-yellow: #FFB300; /* punchy yellow */
+  --color-accent-green: #00C853; /* vivid green */
+  --color-accent-red: #fb4934;
+  --color-cream: #000000; /* Black for headers to pop */
+
+  --radius-card: 0px;
+  --radius-card-lg: 0px;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Space Grotesk', sans-serif;
+
+  --card-border-width: 4px;
+  --card-shadow: 8px 8px 0px #000;
+  --pill-shadow: 4px 4px 0px #000;
+  --pill-border-width: 3px;
+  --glow-opacity: 0;
+  --border-color-base: #000;
+  --border-color-card: #000;
+  --border-color-card-hover: #000;
+  --bg-noise-opacity: 0;
+  --divider-color: #000;
 }
 
 /* ─── KEYFRAMES ──────────────────────────────────────── */
@@ -113,12 +168,21 @@ body {
   overflow-x: hidden;
 }
 
+.light-only {
+  display: none;
+}
+
+.light .light-only {
+  display: block;
+}
+
 /* ─── NOISE OVERLAY ──────────────────────────────────── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: var(--bg-noise-opacity);
   pointer-events: none;
   z-index: 999;
 }
@@ -140,7 +204,7 @@ body::before {
 /* ─── DIVIDER ────────────────────────────────────────── */
 .divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-bg3), transparent);
+  background: linear-gradient(90deg, transparent, var(--divider-color), transparent);
 }
 
 /* ─── SCROLL REVEAL ──────────────────────────────────── */
@@ -202,7 +266,7 @@ body::before {
 }
 
 .project-card:hover::before {
-  opacity: 1;
+  opacity: var(--glow-opacity);
 }
 
 /* ─── PROJECT IMAGE BG ───────────────────────────────── */
@@ -292,4 +356,31 @@ body::before {
   height: 400px;
   background: radial-gradient(ellipse, rgba(254, 128, 25, 0.06), transparent 70%);
   pointer-events: none;
+  opacity: var(--glow-opacity);
+}
+
+/* ─── VIEW TRANSITION THEME TOGGLE ────────────────────── */
+::view-transition-new(root) {
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="white"/></svg>')
+    center / 0 no-repeat;
+  animation: scale 1s;
+  animation-fill-mode: both;
+}
+
+::view-transition-old(root),
+.light::view-transition-old(root) {
+  animation: none;
+  animation-fill-mode: both;
+  z-index: -1;
+}
+
+.light::view-transition-new(root) {
+  animation: scale 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes scale {
+  to {
+    mask-size: 200vmax;
+  }
 }

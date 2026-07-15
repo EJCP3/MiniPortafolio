@@ -20,7 +20,7 @@ const { mini, index, sizeClass, borderClass, accentClass } = Astro.props;
     href={mini.link}
     target="_blank"
     rel="noopener noreferrer"
-    class={`group bg-bg1 border rounded-card-lg p-5 no-underline transition-all duration-300 relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.3)] ${sizeClass} ${borderClass}`}
+    class={`group bg-bg1 border-[length:var(--card-border-width)] rounded-[var(--radius-card-lg)] shadow-[var(--shadow-hard-card)] p-5 no-underline transition-all duration-300 relative overflow-hidden hover:-translate-y-1 hover:shadow-[var(--shadow-hard-card)] ${sizeClass} ${borderClass}`}
 >
     <!-- Subtle gradient glow on hover -->
     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={`background: radial-gradient(circle at 30% 50%, rgba(254,128,25,0.04), transparent 70%);`}></div>
@@ -29,7 +29,7 @@ const { mini, index, sizeClass, borderClass, accentClass } = Astro.props;
         <!-- Header: icon + name -->
         <div class="flex items-center gap-3 mb-3">
             {mini.icon && (
-                <div class="w-9 h-9 rounded-[10px] bg-bg2 border border-bg4 flex items-center justify-center shrink-0">
+                <div class="w-9 h-9 rounded-[var(--radius-card)] bg-bg2 border-[length:var(--pill-border-width)] border-[color:var(--border-color-base)] shadow-[var(--shadow-hard-pill)] flex items-center justify-center shrink-0">
                     <svg class="w-5 h-5" viewBox="0 0 50 50">
                         <use href={`/sprite.svg#${mini.icon}`} />
                     </svg>
@@ -51,7 +51,7 @@ const { mini, index, sizeClass, borderClass, accentClass } = Astro.props;
         <!-- Tech tags -->
         <ul class="flex flex-wrap gap-1.5 mt-3 p-0 m-0 list-none">
             {mini.technologies.map((tech) => (
-                <li class="text-[9px] tracking-wider font-medium px-2 py-0.5 rounded-full bg-bg2 border border-bg4 text-fg-sub uppercase">
+                <li class="text-[9px] tracking-wider font-medium px-2 py-0.5 rounded-[var(--radius-card)] bg-bg2 border-[length:var(--pill-border-width)] border-border-base text-fg-sub uppercase shadow-[var(--shadow-hard-pill)]">
                     {tech}
                 </li>
             ))}

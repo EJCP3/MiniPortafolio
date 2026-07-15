@@ -33,14 +33,14 @@ const { experience = [] } = Astro.props;
         <div class="grid grid-cols-1 gap-6 max-w-[800px] mx-auto">
             {
                 experience.map((exp, i) => (
-                    <article class="p-8 rounded-2xl bg-project-bg-3 border border-accent-yellow/20 hover:border-accent-yellow/50 transition-colors reveal">
+                    <article class="p-8 rounded-[var(--radius-card-lg)] bg-project-bg-3 border-[length:var(--card-border-width)] border-[color:var(--border-color-card)] hover:border-[color:var(--border-color-card-hover)] shadow-[var(--shadow-hard-card)] hover:shadow-[var(--shadow-hard-card)] transition-all reveal">
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                             <div>
                                 <h3 class="text-lg font-bold text-cream mb-1">{exp.position}</h3>
                                 <p class="text-sm font-medium text-accent-yellow">{exp.company}</p>
                             </div>
                             <div class="text-left md:text-right">
-                                <span class="text-xs text-fg-sub bg-bg2 px-3 py-1 rounded-full border border-bg3">
+                                <span class="text-xs text-fg-sub bg-bg2 px-3 py-1 rounded-[var(--radius-card)] border-[length:var(--pill-border-width)] border-border-base shadow-[var(--shadow-hard-pill)]">
                                     {exp.startDate} — {exp.endDate} | {exp.location}
                                 </span>
                             </div>
@@ -52,7 +52,7 @@ const { experience = [] } = Astro.props;
                         
                         <div class="flex flex-wrap gap-2">
                             {exp.technologies.map(tech => (
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-md bg-tag-yellow text-cream border border-accent-yellow/10">
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-[var(--radius-card)] bg-tag-yellow text-cream border-[length:var(--pill-border-width)] border-[color:var(--border-color-card)] shadow-[var(--shadow-hard-pill)]">
                                     {tech}
                                 </span>
                             ))}

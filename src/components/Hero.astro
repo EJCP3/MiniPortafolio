@@ -51,7 +51,7 @@ const skillSpriteIds: Record<string, string> = {
     <div class="max-w-[1080px] mx-auto px-6 w-full">
         <header class="relative z-2 w-full">
             <p
-                class="hero-tag-dot inline-flex items-center gap-2 bg-bg2 border border-bg4 rounded-full px-4 py-1.5 text-[11px] text-accent-teal tracking-wider uppercase mb-7 animate-fade-up m-0"
+                class="hero-tag-dot inline-flex items-center gap-2 bg-bg2 border-[length:var(--pill-border-width)] border-border-base rounded-[var(--radius-card)] shadow-[var(--shadow-hard-pill)] px-4 py-1.5 text-[11px] text-accent-teal tracking-wider uppercase mb-7 animate-fade-up m-0"
             >
                 Disponible para contratación
             </p>
@@ -89,7 +89,7 @@ const skillSpriteIds: Record<string, string> = {
                     <li class="max-md:w-full">
                         <a
                             href="#projects"
-                            class="inline-flex justify-center items-center gap-2.5 bg-accent-orange text-bg0 font-mono font-semibold text-[13px] tracking-wider px-7 py-3.5 rounded-[14px] no-underline transition-all duration-250 hover:bg-cream hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(254,128,25,0.3)] max-md:w-full"
+                            class="inline-flex justify-center items-center gap-2.5 bg-accent-orange text-bg0 font-mono font-semibold text-[13px] tracking-wider px-7 py-3.5 rounded-[var(--radius-card)] border-[length:var(--pill-border-width)] border-border-base shadow-[var(--shadow-hard-pill)] no-underline transition-all duration-250 hover:bg-cream hover:-translate-y-0.5 max-md:w-full"
                         >
                             <svg
                                 width="14"
@@ -109,7 +109,7 @@ const skillSpriteIds: Record<string, string> = {
                     <li class="max-md:w-full">
                         <a
                             href="/cv_EuddyCabrera.pdf"
-                            class="inline-flex justify-center items-center gap-2 bg-transparent text-fg-dim font-mono text-[13px] px-6 py-3.5 rounded-[14px] border border-bg4 no-underline transition-all duration-250 hover:text-accent-teal hover:border-accent-teal hover:bg-accent-teal/[0.05] max-md:w-full"
+                            class="inline-flex justify-center items-center gap-2 bg-transparent text-fg-dim font-mono text-[13px] px-6 py-3.5 rounded-[var(--radius-card)] border-[length:var(--pill-border-width)] border-border-base shadow-[var(--shadow-hard-pill)] no-underline transition-all duration-250 hover:text-accent-teal hover:bg-accent-teal/[0.05] max-md:w-full"
                         >
                             <svg class="w-5 h-5 shrink-0" viewBox="0 0 50 50">
                                 <use href={`/sprite.svg#cv`}></use>
@@ -132,7 +132,7 @@ const skillSpriteIds: Record<string, string> = {
                     skills.map((skill) => {
                         const spriteId = skillSpriteIds[skill.toLowerCase()];
                         return (
-                            <li class="flex items-center gap-2 bg-bg2 border border-bg4 rounded-[14px] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:border-accent-orange hover:bg-accent-orange/[0.07] hover:text-accent-orange hover:shadow-[0_8px_24px_rgba(254,128,25,0.12)]">
+                            <li class="flex items-center gap-2 bg-bg2 border-[length:var(--pill-border-width)] border-border-base rounded-[var(--radius-card)] shadow-[var(--shadow-hard-pill)] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:bg-accent-orange/[0.07] hover:text-accent-orange">
                                 {spriteId ? (
                                     <svg
                                         class="w-5 h-5 shrink-0"
@@ -154,7 +154,7 @@ const skillSpriteIds: Record<string, string> = {
                     skills.map((skill) => {
                         const spriteId = skillSpriteIds[skill.toLowerCase()];
                         return (
-                            <li class="flex items-center gap-2 bg-bg2 border border-bg4 rounded-[14px] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:border-accent-orange hover:bg-accent-orange/[0.07] hover:text-accent-orange hover:shadow-[0_8px_24px_rgba(254,128,25,0.12)]">
+                            <li class="flex items-center gap-2 bg-bg2 border-[length:var(--pill-border-width)] border-border-base rounded-[var(--radius-card)] shadow-[var(--shadow-hard-pill)] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:bg-accent-orange/[0.07] hover:text-accent-orange">
                                 {spriteId ? (
                                     <svg
                                         class="w-5 h-5 shrink-0"

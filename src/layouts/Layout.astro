@@ -39,11 +39,77 @@ import "../styles/global.css";
     <meta property="twitter:image" content="/captura1.jpg" />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@500;700;800;900&family=Space+Grotesk:wght@600;700&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        return 'dark';
+      })();
+      if (theme === 'light') {
+        document.documentElement.classList.add('light');
+      } else {
+        document.documentElement.classList.remove('light');
+      }
+    </script>
   </head>
   <body>
+    <div class="light-only fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
     <slot />
+
+    <script>
+      import { play } from 'cuelume';
+
+      function initInteractionSounds() {
+        // Prevent multiple initializations
+        if (window.__interactionSoundsInitialized) return;
+        window.__interactionSoundsInitialized = true;
+
+        document.addEventListener('mouseover', (e) => {
+          const target = e.target.closest('a, button, .project-card, .contact-link');
+          if (target && !target.dataset.hovered) {
+            target.dataset.hovered = 'true';
+            
+            if (target.classList.contains('project-card') || target.closest('.project-card')) {
+                play('bloom');
+            } else if (target.classList.contains('copy-email-btn')) {
+                play('whisper');
+            } else if (target.classList.contains('contact-link')) {
+                play('droplet');
+            } else {
+                play('tick');
+            }
+
+            target.addEventListener('mouseleave', () => {
+              target.dataset.hovered = '';
+            }, { once: true });
+          }
+        });
+
+        document.addEventListener('mousedown', (e) => {
+          const target = e.target.closest('a, button, .project-card, .contact-link');
+          if (target && target.id !== 'theme-toggle') {
+            if (target.classList.contains('copy-email-btn')) {
+                play('success');
+            } else if (target.classList.contains('project-card') || target.closest('.project-card')) {
+                play('chime');
+            } else if (target.classList.contains('contact-link')) {
+                play('sparkle');
+            } else {
+                play('press');
+            }
+          }
+        });
+      }
+
+      initInteractionSounds();
+      document.addEventListener('astro:after-swap', () => {
+        window.__interactionSoundsInitialized = false;
+        initInteractionSounds();
+      });
+    </script>
   </body>
 </html>

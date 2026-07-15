@@ -17,25 +17,81 @@ const { name = "EJCP" } = Astro.props;
         >
             {name}<span class="text-accent-orange">.</span>
         </a>
-        <ul class="flex gap-8 list-none max-md:gap-5">
-            <li>
-                <a
-                    class="text-fg-dim no-underline text-xs tracking-widest uppercase transition-colors duration-200 hover:text-accent-orange"
-                    href="#projects">proyectos</a
-                >
-            </li>
-            <li>
-                <a
-                    class="text-fg-dim no-underline text-xs tracking-widest uppercase transition-colors duration-200 hover:text-accent-orange"
-                    href="#contact">contacto</a
-                >
-            </li>
-            <li>
-                <a
-                    class="text-fg-dim no-underline text-xs tracking-widest uppercase transition-colors duration-200 hover:text-accent-orange"
-                    href="/cv_EuddyCabrera.pdf">resume</a
-                >
-            </li>
-        </ul>
+        <div class="flex items-center gap-6 max-md:gap-4">
+            <ul class="flex gap-8 list-none max-md:gap-5">
+                <li>
+                    <a
+                        class="text-fg-dim no-underline text-xs tracking-widest uppercase transition-colors duration-200 hover:text-accent-orange"
+                        href="#projects">proyectos</a
+                    >
+                </li>
+                <li>
+                    <a
+                        class="text-fg-dim no-underline text-xs tracking-widest uppercase transition-colors duration-200 hover:text-accent-orange"
+                        href="#contact">contacto</a
+                    >
+                </li>
+                <li>
+                    <a
+                        class="text-fg-dim no-underline text-xs tracking-widest uppercase transition-colors duration-200 hover:text-accent-orange"
+                        href="/cv_EuddyCabrera.pdf">resume</a
+                    >
+                </li>
+            </ul>
+            <button id="theme-toggle" class="cursor-pointer p-2 flex items-center justify-center w-8 h-8 rounded-[var(--radius-card)] border-[length:var(--pill-border-width)] border-border-base shadow-[var(--shadow-hard-pill)] bg-bg2 hover:bg-bg3 transition-all" aria-label="Toggle Theme">
+                <svg id="theme-icon-dark" class="w-4 h-4 block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg id="theme-icon-light" class="w-4 h-4 hidden text-accent-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
     </nav>
 </header>
+
+<script>
+    import { play } from 'cuelume';
+    
+    const themeToggle = document.getElementById('theme-toggle');
+    const iconDark = document.getElementById('theme-icon-dark');
+    const iconLight = document.getElementById('theme-icon-light');
+
+    const updateIcons = () => {
+        if (document.documentElement.classList.contains('light')) {
+            iconDark?.classList.add('hidden');
+            iconLight?.classList.remove('hidden');
+        } else {
+            iconLight?.classList.add('hidden');
+            iconDark?.classList.remove('hidden');
+        }
+    };
+
+    // Run on initial load
+    updateIcons();
+
+    themeToggle?.addEventListener('click', () => {
+        const switchTheme = () => {
+            document.documentElement.classList.toggle('light');
+            const isLight = document.documentElement.classList.contains('light');
+            window.localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            updateIcons();
+            play('chime');
+        };
+
+        if (!document.startViewTransition) {
+            switchTheme();
+            return;
+        }
+
+        document.startViewTransition(switchTheme);
+    });
+</script>
