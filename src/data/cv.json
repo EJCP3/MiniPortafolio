@@ -160,52 +160,15 @@
         "Tailwind CSS"
       ],
       "demo": "https://clinica-dental-01-5pc2lfxiw-ejcp3s-projects.vercel.app/"
-    },
-    {
-      "name": "Courtneyo",
-      "img": "/proyecto/courtneyo.png",
-      "imgs": [
-        "/proyecto/courtneyo.png",
-        "/proyecto/courtneyo2.png",
-        "/proyecto/courtneyo3.png",
-        "/proyecto/courtneyo4.png",
-        "/proyecto/courtneyo5.png",
-        "/proyecto/courtneyo6.png"
-      ],
-      "description": "Sitio web que presenta la odontología como una forma de arte, redefiniendo la experiencia dental mediante arquitectura estética y precisión clínica.",
-      "technologies": [
-        "Nuxt",
-        "GSAP",
-        "NuxtUI",
-        "Tailwind CSS"
-      ],
-      "demo": "https://clinica-dental-02-o1xxy3opv-ejcp3s-projects.vercel.app/"
-    },
-    {
-      "name": "Soma Dental Studio",
-      "img": "/proyecto/soma.png",
-      "imgs": [
-        "/proyecto/soma.png",
-        "/proyecto/soma2.png",
-        "/proyecto/soma3.png",
-        "/proyecto/soma4.png",
-        "/proyecto/soma5.png"
-      ],
-      "description": "Estudio dental especializado en implantes, carillas, ortodoncia y blanqueamiento, ofreciendo una experiencia dental moderna y completa.",
-      "technologies": [
-        "Nuxt",
-        "GSAP",
-        "NuxtUI",
-        "Tailwind CSS"
-      ],
-      "demo": "https://clinica-dental-clinica-dental-03-5kbjt2nq6-ejcp3s-projects.vercel.app/"
     }
   ],
   "skills": [
     "React.js",
+    "Next.js",
     "Vue.js",
     ".NET",
     "JavaScript",
+    "TypeScript",
     "Supabase",
     "HTML",
     "CSS",
