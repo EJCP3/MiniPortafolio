@@ -19,7 +19,7 @@ const { project, index, accentColor, bgColor, tagColors } = Astro.props;
 ---
 
 <article
-    class="project-card bg-bg1 border-[length:var(--card-border-width)] border-border-base rounded-[var(--radius-card-lg)] shadow-[var(--shadow-hard-card)] overflow-hidden transition-all duration-300 relative hover:-translate-y-1.5 hover:border-[color:var(--border-color-card-hover)] hover:shadow-[var(--shadow-hard-card)] reveal flex flex-col"
+    class="project-card group bg-bg1 border-[length:var(--card-border-width)] border-border-base rounded-[var(--radius-card-lg)] shadow-[var(--shadow-hard-card)] overflow-hidden transition-all duration-300 relative hover:-translate-y-1.5 hover:border-[color:var(--border-color-card-hover)] hover:shadow-[var(--shadow-hard-card)] reveal flex flex-col"
     style="transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);"
 >
     <div class={`h-[var(--card-border-width)] w-full ${accentColor}`} />
@@ -35,7 +35,7 @@ const { project, index, accentColor, bgColor, tagColors } = Astro.props;
                     <img
                         src={imgSrc}
                         alt={`${project.name} - ${imgIdx + 1}`}
-                        class={`carousel-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'}`}
+                        class={`carousel-slide absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out scale-[1.00] ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'}`}
                         loading="lazy"
                     />
                 ))}
@@ -54,7 +54,7 @@ const { project, index, accentColor, bgColor, tagColors } = Astro.props;
             <img
                 src={project.img}
                 alt={project.name}
-                class="w-full h-full object-cover block"
+                class="w-full h-full object-cover block scale-[1.35]"
                 loading="lazy"
             />
         )}

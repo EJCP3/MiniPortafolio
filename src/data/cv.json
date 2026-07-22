@@ -20,6 +20,25 @@
   },
   "projects": [
     {
+      "name": "Wissfort",
+      "img": "/proyecto/wiss1.png",
+      "imgs": [
+        "/proyecto/wiss1.png",
+        "/proyecto/wiss2.png",
+        "/proyecto/wiss3.png",
+        "/proyecto/wiss4.png",
+        "/proyecto/wiss5.png"
+      ],
+      "description": "Librería de notificaciones toast headless y sin dependencias de runtime. El núcleo (wiss) es un \"cerebro\" de TypeScript puro —estado, cola, timers— que no sabe nada del DOM ni de ningún framework. La capa visual es intercambiable: por defecto trae sus propios temas (light y dark) o puedes optar por heredar el tema de tu proyecto vía daisyUI o shadcn/ui para que se adapte a tu diseño actual.",
+      "technologies": [
+        "TypeScript",
+        "Tailwind CSS",
+        "vite"
+      ],
+      "demo": "https://wiss-docs.vercel.app/",
+      "github": "https://www.npmjs.com/package/wissfort"
+    },
+    {
       "name": "MiniTicker",
       "img": "/proyecto/miniticker2.png",
       "imgs": [
@@ -91,6 +110,7 @@
     },
     {
       "name": "Rest Countries API",
+      "hidden": true,
       "img": "/proyecto/countries.jpeg",
       "imgs": [
         "/proyecto/countries.jpeg",
@@ -125,6 +145,7 @@
     },
     {
       "name": "My Task Board",
+      "hidden": true,
       "img": "/proyecto/task.jpeg",
       "imgs": [
         "/proyecto/task.jpeg",
