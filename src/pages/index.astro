@@ -2,52 +2,73 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
-import Projects from "../components/Projects.astro";
 import Experience from "../components/Experience.astro";
 import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 import cvData from "../data/cv.json";
 
-const { basics, skills, miniProjects, experience } = cvData;
+const { basics, skills, experience } = cvData;
 const projects = cvData.projects.filter(p => !p.hidden);
 ---
 
 <Layout title={basics.label}>
 	<Navbar />
+
+	<!-- Sección 1: Hero + Proyectos (Proyectos directo en el Hero) -->
 	<Hero
 		name={basics.name}
-		label={basics.label}
 		titular={basics.titular}
 		resumen={basics.resumen}
-		skills={skills}
+		projects={projects}
 	/>
+
 	<div class="divider"></div>
-	<Experience experience={experience} />
-	<div class="divider"></div>
-	<Projects projects={projects} miniProjects={miniProjects} />
-	<div class="divider"></div>
+
+	<!-- Sección 2: Experiencia + Contacto -->
+	<Experience
+		experience={experience}
+		projectCount={projects.length}
+		skillCount={skills.length}
+	/>
 	<Contact
 		name={basics.name}
 		email={basics.email}
 		profiles={basics.profiles}
 	/>
+
+	<!-- Footer con carrusel de skills -->
+	<Footer name={basics.name} skills={skills} />
 </Layout>
 
 <script>
-	// Scroll reveal
-	const reveals = document.querySelectorAll(".reveal");
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry, i) => {
-				if (entry.isIntersecting) {
-					setTimeout(
-						() => entry.target.classList.add("visible"),
-						i * 80,
-					);
-				}
-			});
-		},
-		{ threshold: 0.1 },
-	);
+	function initReveal() {
+		const reveals = document.querySelectorAll(".reveal");
+		reveals.forEach(el => el.classList.remove('visible')); // Reset in case of re-init
 
-	reveals.forEach((el) => observer.observe(el));
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry, i) => {
+					if (entry.isIntersecting) {
+						setTimeout(
+							() => entry.target.classList.add("visible"),
+							i * 80,
+						);
+					}
+				});
+			},
+			{ threshold: 0.1 },
+		);
+
+		reveals.forEach((el) => observer.observe(el));
+	}
+
+	initReveal();
+	document.addEventListener('astro:after-swap', () => {
+		// Only re-init if we are on the index page
+		if (document.getElementById('hero')) {
+			// Make all reveals immediately visible when coming back via view transition
+			// to avoid them being hidden/popping in awkwardly during the transition
+			document.querySelectorAll(".reveal").forEach(el => el.classList.add('visible'));
+		}
+	});
 </script>

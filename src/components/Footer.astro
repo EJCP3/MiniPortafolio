@@ -1,0 +1,105 @@
+---
+interface Props {
+    name: string;
+    skills: string[];
+}
+
+const { name, skills } = Astro.props;
+
+const skillSpriteIds: Record<string, string> = {
+    javascript: "javacript",
+    "vue.js": "vue",
+    "react.js": "react",
+    ".net": "net",
+    supabase: "supabase",
+    html: "html",
+    css: "css",
+    scss: "sass",
+    "tailwind css": "tailwind",
+    astro: "astro",
+    figma: "figma",
+    github: "github",
+    daisyui: "daisyui",
+    vite: "vite",
+    nuxt: "nuxt",
+    gsap: "gsap",
+    nuxtui: "nuxtui",
+    "next.js": "react",
+    "typescript": "javacript",
+};
+---
+
+<footer class="pt-12 pb-8 border-t border-bg2 relative overflow-hidden">
+    <div class="max-w-[1080px] mx-auto px-6">
+        <!-- Skills carousel -->
+        <aside
+            class="relative mb-10 overflow-hidden carousel-mask"
+            aria-label="Tecnologías"
+        >
+            <ul
+                class="flex gap-2.5 w-max animate-ticker uppercase p-0 m-0 list-none"
+            >
+                {
+                    skills.map((skill) => {
+                        const spriteId = skillSpriteIds[skill.toLowerCase()];
+                        return (
+                            <li class="flex items-center gap-2 bg-bg2 border-[length:var(--pill-border-width)] border-border-base rounded-[var(--radius-card)] shadow-[var(--shadow-hard-pill)] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:bg-accent-orange/[0.07] hover:text-accent-orange">
+                                {spriteId ? (
+                                    <svg
+                                        class="w-5 h-5 shrink-0"
+                                        viewBox="0 0 50 50"
+                                    >
+                                        <use href={`/sprite.svg#${spriteId}`} />
+                                    </svg>
+                                ) : (
+                                    <span class="text-base leading-none">
+                                        🔧
+                                    </span>
+                                )}
+                                {skill}
+                            </li>
+                        );
+                    })
+                }
+                {
+                    skills.map((skill) => {
+                        const spriteId = skillSpriteIds[skill.toLowerCase()];
+                        return (
+                            <li class="flex items-center gap-2 bg-bg2 border-[length:var(--pill-border-width)] border-border-base rounded-[var(--radius-card)] shadow-[var(--shadow-hard-pill)] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:bg-accent-orange/[0.07] hover:text-accent-orange">
+                                {spriteId ? (
+                                    <svg
+                                        class="w-5 h-5 shrink-0"
+                                        viewBox="0 0 50 50"
+                                    >
+                                        <use href={`/sprite.svg#${spriteId}`} />
+                                    </svg>
+                                ) : (
+                                    <span class="text-base leading-none">
+                                        🔧
+                                    </span>
+                                )}
+                                {skill}
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        </aside>
+
+        <!-- Footer credits -->
+        <div class="text-center flex flex-col items-center gap-2">
+            <p
+                class="font-sans text-[15px] font-extrabold text-cream tracking-tight"
+            >
+                Creando con mucho amor <span
+                    class="text-accent-orange text-sm font-light italic"
+                    >y con musica de fondo.</span
+                >
+            </p>
+            <p class="text-[11px] text-fg-sub tracking-wider font-mono">
+                © {new Date().getFullYear()}
+                {name.trim()}.
+            </p>
+        </div>
+    </div>
+</footer>

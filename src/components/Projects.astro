@@ -1,7 +1,4 @@
 ---
-import ProjectCard from "./projects/ProjectCard.astro";
-import MiniProjectCard from "./projects/MiniProjectCard.astro";
-
 interface Project {
     name: string;
     img: string;
@@ -12,174 +9,247 @@ interface Project {
     demo?: string;
 }
 
-interface MiniProject {
-    name: string;
-    description: string;
-    technologies: string[];
-    link: string;
-    icon?: string;
-}
-
 interface Props {
     projects: Project[];
-    miniProjects?: MiniProject[];
 }
 
-const { projects, miniProjects = [] } = Astro.props;
-
-const accentColors = [
-    "accent-line-orange",
-    "accent-line-teal",
-    "accent-line-yellow",
-    "accent-line-green",
-];
-const bgColors = [
-    "project-bg-1",
-    "project-bg-2",
-    "project-bg-3",
-    "project-bg-4",
-];
-const tagColors = ["tag-orange", "tag-teal", "tag-yellow", "tag-green"];
-
-const bentoSizes = [
-    "md:col-span-2 md:row-span-1",
-    "md:col-span-1 md:row-span-1",
-    "md:col-span-1 md:row-span-1",
-    "md:col-span-1 md:row-span-1",
-    "md:col-span-1 md:row-span-1",
-    "md:col-span-2 md:row-span-1",
-];
-
-const bentoBorders = [
-    "border-accent-orange/20 hover:border-accent-orange/50",
-    "border-accent-teal/20 hover:border-accent-teal/50",
-    "border-accent-yellow/20 hover:border-accent-yellow/50",
-    "border-accent-green/20 hover:border-accent-green/50",
-    "border-accent-orange/20 hover:border-accent-orange/50",
-    "border-accent-teal/20 hover:border-accent-teal/50",
-];
-
-const bentoAccent = [
-    "text-accent-orange",
-    "text-accent-teal",
-    "text-accent-yellow",
-    "text-accent-green",
-    "text-accent-orange",
-    "text-accent-teal",
-];
+const { projects } = Astro.props;
 ---
 
-<section id="projects" class="py-[120px] relative">
-    <div class="max-w-[1080px] mx-auto px-6">
-        <header class="text-center mb-[60px] reveal">
-            <p class="text-[8px] tracking-[0.2em] uppercase text-accent-orange mb-3">
+<section id="projects" class="py-20 relative">
+    <div class="max-w-[1200px] mx-auto px-6">
+        <!-- Section header -->
+        <header class="text-center mb-16 reveal">
+            <p class="text-[10px] tracking-[0.25em] uppercase text-accent-orange mb-3 font-mono">
                 // proyectos destacados
             </p>
-            <h2 class="font-extrabold text-cream tracking-[-1.5px] leading-none text-xl">
-                 Desde interfaces hasta APIs — sistemas completos creados para escalar
+            <h2 class="font-sans font-extrabold text-cream tracking-[-1.5px] leading-tight text-xl md:text-2xl">
+                Desde interfaces hasta APIs — sistemas completos
             </h2>
-            <p class="mt-3.5 text-accent-teal-d text-xs max-w-[480px] mx-auto">
-               Creandos soluciones que traducen la innovación en impacto real.
+            <p class="mt-3.5 text-fg-sub text-xs max-w-[480px] mx-auto">
+                Creando soluciones que traducen la innovación en impacto real.
             </p>
         </header>
 
-        <div class="grid grid-cols-[repeat(auto-fill,minmax(480px,1fr))] gap-6 max-sm:grid-cols-1 max-md:grid-cols-1">
-            {
-                projects.map((project, i) => (
-                    <ProjectCard 
-                        project={project} 
-                        index={i}
-                        accentColor={accentColors[i % 4]}
-                        bgColor={bgColors[i % 4]}
-                        tagColors={tagColors}
-                    />
-                ))
-            }
-        </div>
-
-        {miniProjects.length > 0 && (
-            <aside aria-label="Más proyectos" class="mt-20 reveal hidden">
-                <header class="flex items-center gap-4 mb-8">
-                    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-bg3 to-transparent"></div>
-                    <h3 class="text-[11px] tracking-[0.2em] uppercase text-fg-sub whitespace-nowrap m-0">// more work</h3>
-                    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-bg3 to-transparent"></div>
-                </header>
-
-                <div class="grid grid-cols-1 md:grid-cols-[repeat(3,minmax(200px,1fr))] gap-3 auto-rows-fr">
-                    {miniProjects.map((mini, i) => (
-                        <MiniProjectCard 
-                            mini={mini}
-                            index={i}
-                            sizeClass={bentoSizes[i % 6]}
-                            borderClass={bentoBorders[i % 6]}
-                            accentClass={bentoAccent[i % 6]}
-                        />
-                    ))}
+        <!-- Project Grid -->
+        <div class="projects-grid">
+            {projects.map((project, i) => (
+                <div class="project-box reveal" data-index={i}>
+                    <div
+                        class="project-box-content"
+                        style={`background-image: url(${project.img})`}
+                        data-flip-id={`project-${i}`}
+                    >
+                        <div class="project-box-overlay">
+                            <span class="project-box-number">{String(i + 1).padStart(2, '0')}</span>
+                            <h3 class="project-box-name">{project.name}</h3>
+                        </div>
+                    </div>
                 </div>
-            </aside>
-        )}
+            ))}
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="project-modal" id="project-modal">
+        <div class="project-modal-overlay"></div>
+        <div class="project-modal-inner">
+            <button class="project-modal-close" aria-label="Cerrar modal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="project-modal-scroll">
+                <div class="project-modal-body">
+                    <div class="project-modal-image-area">
+                        <!-- Flipped box-content goes here -->
+                    </div>
+                    <div class="project-modal-info">
+                        <span class="project-modal-number"></span>
+                        <h3 class="project-modal-name"></h3>
+                        <p class="project-modal-desc"></p>
+                        <div class="project-modal-tech"></div>
+                        <div class="project-modal-actions"></div>
+                    </div>
+                </div>
+                <div class="project-modal-gallery"></div>
+            </div>
+        </div>
     </div>
 </section>
 
+<!-- Project data for client-side JS -->
+<script type="application/json" id="projects-data" set:html={JSON.stringify(projects)} />
+
 <script>
-  function initCarousels() {
-    const carousels = document.querySelectorAll('.project-carousel');
+    import gsap from 'gsap';
+    import { Flip } from 'gsap/Flip';
 
-    carousels.forEach((carousel) => {
-      const slides = carousel.querySelectorAll('.carousel-slide');
-      const dots = carousel.querySelectorAll('.carousel-dot');
-      if (slides.length <= 1) return;
+    gsap.registerPlugin(Flip);
 
-      const interval = parseInt(carousel.getAttribute('data-interval') || '5000');
-      let current = 0;
-      let paused = false;
-      let timer: ReturnType<typeof setInterval>;
+    function initProjectFlip() {
+        const modal = document.querySelector('.project-modal');
+        if (!modal) return;
 
-      function goTo(index: number) {
-        slides.forEach((slide, i) => {
-          if (i === index) {
-            (slide as HTMLElement).style.opacity = '1';
-          } else {
-            (slide as HTMLElement).style.opacity = '0';
-          }
-        });
-        dots.forEach((dot, i) => {
-          if (i === index) {
-            dot.classList.add('bg-accent-orange', 'w-4');
-            dot.classList.remove('bg-fg-sub/40');
-          } else {
-            dot.classList.remove('bg-accent-orange', 'w-4');
-            dot.classList.add('bg-fg-sub/40');
-          }
-        });
-        current = index;
-      }
+        const modalImageArea = modal.querySelector('.project-modal-image-area');
+        const modalOverlay = modal.querySelector('.project-modal-overlay');
+        const modalClose = modal.querySelector('.project-modal-close');
+        const modalInfo = modal.querySelector('.project-modal-info');
+        const modalGallery = modal.querySelector('.project-modal-gallery');
+        const boxes = gsap.utils.toArray('.project-box') as HTMLElement[];
+        const boxContents = gsap.utils.toArray('.project-box-content') as HTMLElement[];
 
-      function next() {
-        if (!paused) {
-          goTo((current + 1) % slides.length);
+        let projectsData: any[] = [];
+        try {
+            projectsData = JSON.parse(document.getElementById('projects-data')?.textContent || '[]');
+        } catch {}
+
+        let activeIndex: number | undefined = undefined;
+
+        function populateModal(project: any, index: number) {
+            const numEl = modal!.querySelector('.project-modal-number');
+            const nameEl = modal!.querySelector('.project-modal-name');
+            const descEl = modal!.querySelector('.project-modal-desc');
+            const techEl = modal!.querySelector('.project-modal-tech');
+            const actionsEl = modal!.querySelector('.project-modal-actions');
+            const galleryEl = modal!.querySelector('.project-modal-gallery');
+
+            if (numEl) numEl.textContent = String(index + 1).padStart(2, '0');
+            if (nameEl) nameEl.textContent = project.name;
+            if (descEl) descEl.textContent = project.description;
+
+            if (techEl) {
+                techEl.innerHTML = project.technologies.map((t: string) =>
+                    `<span class="modal-tech-tag">${t}</span>`
+                ).join('');
+            }
+
+            if (actionsEl) {
+                let html = '';
+                if (project.demo) {
+                    html += `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="modal-action-btn modal-action-demo">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        Live Demo
+                    </a>`;
+                }
+                if (project.github) {
+                    html += `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="modal-action-btn modal-action-github">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                        GitHub
+                    </a>`;
+                }
+                actionsEl.innerHTML = html;
+            }
+
+            // Gallery thumbnails
+            if (galleryEl && project.imgs && project.imgs.length > 1) {
+                galleryEl.innerHTML = project.imgs.map((img: string, imgIdx: number) =>
+                    `<img src="${img}" alt="${project.name} ${imgIdx + 1}" class="modal-gallery-thumb ${imgIdx === 0 ? 'active' : ''}" data-img="${img}" loading="lazy" />`
+                ).join('');
+
+                // Click thumbnail to change main image
+                galleryEl.querySelectorAll('.modal-gallery-thumb').forEach((thumb: Element) => {
+                    thumb.addEventListener('click', () => {
+                        const imgUrl = (thumb as HTMLElement).dataset.img;
+                        const mainContent = modalImageArea!.querySelector('.project-box-content') as HTMLElement;
+                        if (mainContent && imgUrl) {
+                            mainContent.style.backgroundImage = `url(${imgUrl})`;
+                        }
+                        galleryEl!.querySelectorAll('.modal-gallery-thumb').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                    });
+                });
+            } else if (galleryEl) {
+                galleryEl.innerHTML = '';
+            }
+
+            // Reset animation states
+            gsap.set(modalInfo!, { opacity: 0, y: 30 });
+            gsap.set(modalGallery!, { opacity: 0, y: 20 });
         }
-      }
 
-      timer = setInterval(next, interval);
+        function openModal(boxContent: HTMLElement, i: number) {
+            const state = Flip.getState(boxContent);
+            modalImageArea!.appendChild(boxContent);
+            activeIndex = i;
 
-      carousel.addEventListener('mouseenter', () => { paused = true; });
-      carousel.addEventListener('mouseleave', () => { paused = false; });
+            populateModal(projectsData[i], i);
 
-      dots.forEach((dot) => {
-        dot.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          const idx = parseInt((dot as HTMLElement).dataset.index || '0');
-          goTo(idx);
-          
-          clearInterval(timer);
-          timer = setInterval(next, interval);
+            gsap.set(modal!, { autoAlpha: 1, visibility: 'visible' });
+            document.body.style.overflow = 'hidden';
+
+            Flip.from(state, {
+                duration: 0.7,
+                ease: 'power1.inOut',
+                onComplete: () => {
+                    gsap.to(modalInfo!, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
+                    gsap.to(modalGallery!, { opacity: 1, y: 0, duration: 0.4, delay: 0.15, ease: 'power2.out' });
+                }
+            });
+
+            gsap.to(modalOverlay!, { autoAlpha: 0.75, duration: 0.35 });
+        }
+
+        function closeModal() {
+            if (activeIndex === undefined) return;
+
+            const boxContent = modalImageArea!.querySelector('.project-box-content') as HTMLElement;
+            if (!boxContent) return;
+
+            // Restore original image before flipping back
+            const project = projectsData[activeIndex];
+            boxContent.style.backgroundImage = `url(${project.img})`;
+
+            const state = Flip.getState(boxContent);
+            boxes[activeIndex].appendChild(boxContent);
+            activeIndex = undefined;
+
+            gsap.to([modal, modalOverlay], {
+                autoAlpha: 0,
+                duration: 0.35,
+                ease: 'power1.inOut'
+            });
+
+            gsap.to([modalInfo, modalGallery], { opacity: 0, y: 20, duration: 0.2 });
+
+            Flip.from(state, {
+                duration: 0.7,
+                ease: 'power1.inOut',
+                absolute: true,
+                onComplete: () => {
+                    gsap.set(boxContent, { zIndex: 'auto' });
+                    document.body.style.overflow = '';
+                }
+            });
+            gsap.set(boxContent, { zIndex: 1002 });
+        }
+
+        // Event listeners
+        boxContents.forEach((boxContent, i) => {
+            boxContent.addEventListener('click', () => {
+                if (activeIndex === undefined) {
+                    openModal(boxContent as HTMLElement, i);
+                }
+            });
         });
-      });
-    });
-  }
 
-  initCarousels();
-  document.addEventListener('astro:after-swap', initCarousels);
+        modalOverlay?.addEventListener('click', closeModal);
+        modalClose?.addEventListener('click', closeModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && activeIndex !== undefined) {
+                closeModal();
+            }
+        });
+    }
+
+    initProjectFlip();
+    document.addEventListener('astro:after-swap', initProjectFlip);
 </script>

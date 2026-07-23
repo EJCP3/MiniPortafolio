@@ -1,0 +1,123 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import cvData from "../../data/cv.json";
+
+export function getStaticPaths() {
+    function slugify(text: string) {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '');
+    }
+
+    const projects = cvData.projects.filter(p => !p.hidden);
+
+    return projects.map((project, index) => ({
+        params: { id: slugify(project.name) },
+        props: { project, index }
+    }));
+}
+
+const { project, index } = Astro.props;
+
+function slugify(text: string) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+}
+
+const slug = slugify(project.name);
+---
+
+<Layout title={`${project.name} - Euddy Cabrera`}>
+    <main class="min-h-screen bg-bg0 text-fg relative">
+        
+        <!-- Botón flotante de cerrar -->
+        <nav class="fixed top-0 right-0 p-6 z-50">
+            <button onclick="window.history.length > 1 ? window.history.back() : window.location.href = '/'" class="flex items-center justify-center w-12 h-12 rounded-full bg-bg2 border border-bg3 text-fg hover:bg-accent-orange hover:text-bg0 hover:rotate-90 transition-all duration-300 shadow-lg cursor-pointer" aria-label="Cerrar proyecto">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </nav>
+
+        <div class="flex flex-col lg:flex-row min-h-screen">
+            
+            <!-- Panel izquierdo: Imagen Principal con View Transition -->
+            <div class="lg:w-3/5 lg:h-screen lg:sticky lg:top-0 h-[60vh] w-full relative overflow-hidden">
+                <!-- Capa extra para evitar problemas de relación de aspecto en la transición. Se aplica el view-transition al div contenedor de la imagen si es cover. -->
+                <div 
+                    class="w-full h-full bg-cover bg-center"
+                    style={`background-image: url(${project.img}); view-transition-name: project-image-${slug};`}
+                >
+                </div>
+                <!-- Overlay sutil opcional -->
+                <div class="absolute inset-0 bg-gradient-to-t from-bg0/80 via-bg0/20 to-transparent lg:hidden pointer-events-none"></div>
+            </div>
+
+            <!-- Panel derecho: Información y Galería -->
+            <div class="lg:w-2/5 w-full p-8 md:p-16 lg:p-20 overflow-y-auto bg-bg0 flex flex-col justify-center">
+                
+                <div class="max-w-[600px] mx-auto w-full animate-fade-up-2">
+                    <span class="text-accent-teal font-mono text-sm font-semibold tracking-wider mb-4 block">// PROYECTO {String(index + 1).padStart(2, '0')}</span>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-cream mb-6 tracking-tight leading-[1.1]">
+                        {project.name}
+                    </h1>
+                    
+                    <p class="text-fg-dim text-lg leading-relaxed mb-10 font-mono">
+                        {project.description}
+                    </p>
+
+                    <div class="mb-10">
+                        <h3 class="text-sm font-mono text-fg font-semibold mb-4 uppercase tracking-widest border-b border-bg2 pb-2">Tecnologías Utilizadas</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {project.technologies.map((tech: string) => (
+                                <span class="bg-bg2/50 border border-bg3 text-cream px-3 py-1.5 rounded-md text-sm font-mono shadow-sm">
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 pt-6 border-t border-bg2">
+                        {project.demo && (
+                            <a href={project.demo} target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center gap-2 bg-accent-orange text-bg0 font-mono font-semibold text-sm px-6 py-3 rounded-full border border-transparent shadow-[var(--shadow-hard-pill)] transition-all duration-250 hover:bg-cream hover:-translate-y-0.5">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                                Live Demo
+                            </a>
+                        )}
+                        {project.github && (
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center gap-2 bg-transparent text-cream font-mono text-sm px-6 py-3 rounded-full border border-bg3 shadow-sm transition-all duration-250 hover:border-cream hover:bg-bg2">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                                Código Fuente
+                            </a>
+                        )}
+                    </div>
+                </div>
+
+
+                
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    /* Asegurar que la transición funcione de maravilla incluso en scroll */
+    html {
+        scroll-behavior: smooth;
+    }
+</style>

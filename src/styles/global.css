@@ -49,48 +49,47 @@
   --pill-border-width: 1px;
   --glow-opacity: 1;
   --border-color-base: var(--color-bg3);
-  --border-color-card: rgba(250, 189, 47, 0.2); /* accent-yellow/20 */
+  --border-color-card: rgba(250, 189, 47, 0.2);
   --border-color-card-hover: rgba(250, 189, 47, 0.5);
-  --bg-noise-opacity: 0.035;
+  --bg-noise-opacity: 0;
   --divider-color: var(--color-bg3);
 }
 
 .light {
-  --color-bg0: #FFFDF5;
+  --color-bg0: #F4F3EF;
   --color-bg1: #FFFFFF;
-  --color-bg2: #f4f4f4;
-  --color-bg3: #ffffff;
-  --color-bg4: #e0e0e0;
-  --color-fg: #000000;
-  --color-fg-dim: #222222;
-  --color-fg-sub: #444444;
+  --color-bg2: #EAE8E2;
+  --color-bg3: #DDDBCF;
+  --color-bg4: #D0CEBE;
+  --color-fg: #111111;
+  --color-fg-dim: #333333;
+  --color-fg-sub: #555555;
   
-  /* High contrast punchy colors for light mode text/accents */
-  --color-accent-orange: #FF0055; /* deep neon pink/red */
-  --color-accent-orange-dim: #cc0044;
-  --color-accent-teal: #0052FF; /* deep blue */
-  --color-accent-teal-d: #0040cc;
-  --color-accent-yellow: #FFB300; /* punchy yellow */
-  --color-accent-green: #00C853; /* vivid green */
-  --color-accent-red: #fb4934;
-  --color-cream: #000000; /* Black for headers to pop */
+  --color-accent-orange: #FF3B00;
+  --color-accent-orange-dim: #D13000;
+  --color-accent-teal: #0055FF;
+  --color-accent-teal-d: #0044CC;
+  --color-accent-yellow: #F5A623;
+  --color-accent-green: #10B981;
+  --color-accent-red: #EF4444;
+  --color-cream: #111111;
 
-  --radius-card: 0px;
-  --radius-card-lg: 0px;
+  --radius-card: 14px;
+  --radius-card-lg: 20px;
 
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Space Grotesk', sans-serif;
 
-  --card-border-width: 4px;
-  --card-shadow: 8px 8px 0px #000;
-  --pill-shadow: 4px 4px 0px #000;
-  --pill-border-width: 3px;
+  --card-border-width: 1px;
+  --card-shadow: none;
+  --pill-shadow: none;
+  --pill-border-width: 1px;
   --glow-opacity: 0;
-  --border-color-base: #000;
-  --border-color-card: #000;
+  --border-color-base: #e0e0e0;
+  --border-color-card: #e0e0e0;
   --border-color-card-hover: #000;
   --bg-noise-opacity: 0;
-  --divider-color: #000;
+  --divider-color: #e0e0e0;
 }
 
 /* ─── KEYFRAMES ──────────────────────────────────────── */
@@ -119,13 +118,10 @@
 }
 
 @keyframes pulse {
-
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
     transform: scale(1);
   }
-
   50% {
     opacity: 0.5;
     transform: scale(1.4);
@@ -133,12 +129,9 @@
 }
 
 @keyframes blink {
-
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
   }
-
   50% {
     opacity: 0;
   }
@@ -148,7 +141,6 @@
   0% {
     transform: translateX(0);
   }
-
   100% {
     transform: translateX(-50%);
   }
@@ -174,17 +166,6 @@ body {
 
 .light .light-only {
   display: block;
-}
-
-/* ─── NOISE OVERLAY ──────────────────────────────────── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity: var(--bg-noise-opacity);
-  pointer-events: none;
-  z-index: 999;
 }
 
 /* ─── SCROLLBAR ──────────────────────────────────────── */
@@ -224,66 +205,10 @@ body::before {
   animation-play-state: paused;
 }
 
-/* ─── HERO GRID LINES ────────────────────────────────── */
-.hero-grid::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--color-bg2) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-bg2) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.3;
-}
-
-/* ─── HERO TAG GREEN DOT ─────────────────────────────── */
-.hero-tag-dot::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: var(--color-accent-green);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
 /* ─── TECH CAROUSEL MASK ─────────────────────────────── */
 .carousel-mask {
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
-}
-
-/* ─── PROJECT CARD GLOW ──────────────────────────────── */
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-card-lg);
-  background: linear-gradient(135deg, rgba(254, 128, 25, 0.04), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.project-card:hover::before {
-  opacity: var(--glow-opacity);
-}
-
-/* ─── PROJECT IMAGE BG ───────────────────────────────── */
-.project-bg-1 {
-  background: linear-gradient(135deg, #32302f, #1d2021);
-}
-
-.project-bg-2 {
-  background: linear-gradient(135deg, #282828, #32302f);
-}
-
-.project-bg-3 {
-  background: linear-gradient(135deg, #1d2021, #282828);
-}
-
-.project-bg-4 {
-  background: linear-gradient(135deg, #32302f, #282828);
 }
 
 /* ─── ACCENT LINES ───────────────────────────────────── */
@@ -359,24 +284,191 @@ body::before {
   opacity: var(--glow-opacity);
 }
 
+/* ═══════════════════════════════════════════════════════
+   PROJECTS HORIZONTAL CAROUSEL (ELEVEIGHT STYLE)
+   ═══════════════════════════════════════════════════════ */
+.projects-carousel-container {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.projects-carousel-track {
+  display: flex;
+  gap: 1.75rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  padding-left: max(1.5rem, calc((100vw - 1200px) / 2 + 1.5rem));
+  padding-right: max(1.5rem, calc((100vw - 1200px) / 2 + 1.5rem));
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.projects-carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.project-carousel-item {
+  width: min(88vw, 680px);
+  aspect-ratio: 16 / 10;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body:not(.modal-open) .project-carousel-item:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+
+.project-carousel-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.35s ease, background-image 0.4s ease;
+}
+
+.light .project-carousel-card {
+  border-radius: 24px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.project-modal-desc {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-fg-dim);
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+
+.project-modal-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.modal-tech-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 12px;
+  border-radius: var(--radius-card);
+  background: rgba(254, 128, 25, 0.08);
+  border: 1px solid rgba(254, 128, 25, 0.25);
+  color: var(--color-accent-orange);
+}
+
+.light .modal-tech-tag {
+  background: #f4f4f4;
+  border: 1px solid #e0e0e0;
+  color: var(--color-fg);
+}
+
+.project-modal-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.modal-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 11px 20px;
+  border-radius: var(--radius-card);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-action-demo {
+  background: var(--color-accent-orange);
+  color: var(--color-bg0);
+}
+
+.modal-action-demo:hover {
+  background: var(--color-cream);
+  transform: translateY(-2px);
+}
+
+.modal-action-github {
+  background: transparent;
+  color: var(--color-fg-dim);
+  border: 1px solid var(--color-bg3);
+}
+
+.modal-action-github:hover {
+  color: var(--color-cream);
+  border-color: var(--color-bg4);
+  background: var(--color-bg2);
+  transform: translateY(-2px);
+}
+
 /* ─── VIEW TRANSITION THEME TOGGLE ────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   View Transitions (Theme Toggle & Page Nav)
+═══════════════════════════════════════════════════════ */
+
+/* Disable default crossfade for page navigations to mimic instant modal feeling */
+::view-transition-old(root),
 ::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Global view transition speed to mimic the elegant 0.7s GSAP Flip */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* Custom circle animation ONLY for theme toggle */
+.theme-transitioning::view-transition-new(root) {
   mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="white"/></svg>')
     center / 0 no-repeat;
   animation: scale 1s;
   animation-fill-mode: both;
 }
 
-::view-transition-old(root),
-.light::view-transition-old(root) {
+.theme-transitioning::view-transition-old(root),
+.light.theme-transitioning::view-transition-old(root) {
   animation: none;
   animation-fill-mode: both;
   z-index: -1;
 }
 
-.light::view-transition-new(root) {
+.light.theme-transitioning::view-transition-new(root) {
   animation: scale 1s;
   animation-fill-mode: both;
+}
+
+/* Disable entry animations on client-side navigation (View Transitions) for the Hero only */
+.no-hero-animations #hero .animate-fade-up-1,
+.no-hero-animations #hero .animate-fade-up-2,
+.no-hero-animations #hero .animate-fade-up-3,
+.no-hero-animations #hero .animate-fade-up-4 {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 @keyframes scale {

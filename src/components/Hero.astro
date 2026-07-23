@@ -1,109 +1,75 @@
 ---
+interface Project {
+    name: string;
+    img: string;
+    imgs: string[];
+    description: string;
+    technologies: string[];
+    github?: string;
+    demo?: string;
+}
+
 interface Props {
     name: string;
-    label: string;
     titular: string;
     resumen: string;
-    skills: string[];
+    projects: Project[];
 }
-const { name, label, titular, resumen, skills } = Astro.props;
 
-const nameParts = name.trim().split(" ");
-const firstName = nameParts[0];
-const lastName = nameParts.slice(1).join(" ");
+const { name, titular, resumen, projects } = Astro.props;
 
-const skillSpriteIds: Record<string, string> = {
-    javascript: "javacript",
-    "vue.js": "vue",
-    "react.js": "react",
-    net: "net",
-    supabase: "supabase",
-    html: "html",
-    css: "css",
-    scss: "sass",
-    tailwindcss: "tailwind",
-    astro: "astro",
-    figma: "figma",
-    github: "github",
-    daisyui: "daisyui",
-    vite: "vite",
-    nuxt: "nuxt",
-    gsap: "gsap",
-    nuxtui: "nuxtui",
-};
+function slugify(text: string) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+}
 ---
 
 <section
     id="hero"
-    class="min-h-screen flex items-center relative overflow-hidden pt-20 hero-grid"
+    class="pt-28 md:pt-36 pb-16 relative overflow-hidden"
 >
+    <!-- Background Glow orbs -->
     <div
-        class="absolute rounded-full blur-[90px] pointer-events-none w-[520px] h-[520px] -top-[100px] -right-[80px]"
-        style="background: radial-gradient(circle, rgba(254,128,25,0.12), transparent 70%);"
+        class="absolute rounded-full blur-[100px] pointer-events-none w-[520px] h-[520px] -top-[100px] -right-[80px]"
+        style="background: radial-gradient(circle, rgba(254,128,25,0.1), transparent 70%);"
     >
     </div>
     <div
-        class="absolute rounded-full blur-[90px] pointer-events-none w-[380px] h-[380px] bottom-20 -left-[60px]"
-        style="background: radial-gradient(circle, rgba(131,165,152,0.1), transparent 70%);"
+        class="absolute rounded-full blur-[100px] pointer-events-none w-[380px] h-[380px] top-[400px] -left-[60px]"
+        style="background: radial-gradient(circle, rgba(131,165,152,0.08), transparent 70%);"
     >
     </div>
 
-    <div class="max-w-[1080px] mx-auto px-6 w-full">
-        <header class="relative z-2 w-full">
-            <p
-                class="hero-tag-dot inline-flex items-center gap-2 bg-bg2 border-[length:var(--pill-border-width)] border-border-base rounded-[var(--radius-card)] shadow-[var(--shadow-hard-pill)] px-4 py-1.5 text-[11px] text-accent-teal tracking-wider uppercase mb-7 animate-fade-up m-0"
-            >
-                Disponible para contratación
-            </p>
-
+    <!-- Hero Header (Text + CTAs) -->
+    <div class="max-w-[1200px] mx-auto px-6 w-full relative z-2">
+        <header class="max-w-[800px] mb-12">
             <h1
-                class="font-sans font-extrabold leading-[0.95] tracking-[-2px] text-cream mb-2 animate-fade-up-1"
-                style="font-size: clamp(52px, 8vw, 96px);"
+                class="font-sans font-extrabold leading-[1.05] tracking-[-2.5px] text-cream mb-5 animate-fade-up-1 whitespace-nowrap"
+                style="font-size: clamp(36px, 6vw, 76px);"
             >
-                {firstName}<br /><span class="text-accent-orange"
-                    >{lastName}</span
-                >
+                Euddy <span class="text-accent-orange">Cabrera.</span>
             </h1>
 
             <p
-                class="font-sans font-normal text-fg-dim tracking-wide mb-7 animate-fade-up-2"
-                style="font-size: clamp(18px, 2.5vw, 26px);"
+                class="max-w-[640px] text-sm md:text-base text-fg-dim leading-[1.8] mb-8 animate-fade-up-3 font-mono"
             >
-                <span class="text-accent-teal font-semibold">Full Stack</span> Developer
+                {resumen} <span class="text-accent-teal font-semibold">Full Stack Developer.</span>
             </p>
 
-            <p
-                class="max-w-[520px] text-sm text-fg-dim leading-[1.8] mb-12 animate-fade-up-3"
-            >
-                <span
-                    class="text-accent-orange text-xs font-semibold animate-bounce"
-                    >¿Necesita una pagina o app web bonita e intuitiva?</span
-                >
-                {resumen}
-            </p>
-
-            <nav aria-label="Enlaces principales" class="w-full mb-4">
+            <nav aria-label="Enlaces principales" class="w-full">
                 <ul
-                    class="flex gap-4 items-center animate-fade-up-5 max-md:flex-col max-md:items-start p-0 m-0 list-none"
+                    class="flex gap-4 items-center animate-fade-up-4 max-md:flex-col max-md:items-start p-0 m-0 list-none"
                 >
                     <li class="max-md:w-full">
                         <a
-                            href="#projects"
+                            href="#contact"
                             class="inline-flex justify-center items-center gap-2.5 bg-accent-orange text-bg0 font-mono font-semibold text-[13px] tracking-wider px-7 py-3.5 rounded-[var(--radius-card)] border-[length:var(--pill-border-width)] border-border-base shadow-[var(--shadow-hard-pill)] no-underline transition-all duration-250 hover:bg-cream hover:-translate-y-0.5 max-md:w-full"
                         >
-                            <svg
-                                width="14"
-                                height="14"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                ><rect x="2" y="3" width="20" height="14" rx="2"
-                                ></rect><path d="M8 21h8m-4-4v4"></path></svg
-                            >
-                            Ver proyectos
+                            Hablemos
                         </a>
                     </li>
                     <li class="max-md:w-full">
@@ -120,59 +86,86 @@ const skillSpriteIds: Record<string, string> = {
                 </ul>
             </nav>
         </header>
+    </div>
 
-        <aside
-            class="relative mt-7 mb-12 overflow-hidden carousel-mask animate-fade-up-4"
-            aria-label="Mis habilidades"
-        >
-            <ul
-                class="flex gap-2.5 w-max animate-ticker uppercase p-0 m-0 list-none"
-            >
-                {
-                    skills.map((skill) => {
-                        const spriteId = skillSpriteIds[skill.toLowerCase()];
-                        return (
-                            <li class="flex items-center gap-2 bg-bg2 border-[length:var(--pill-border-width)] border-border-base rounded-[var(--radius-card)] shadow-[var(--shadow-hard-pill)] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:bg-accent-orange/[0.07] hover:text-accent-orange">
-                                {spriteId ? (
-                                    <svg
-                                        class="w-5 h-5 shrink-0"
-                                        viewBox="0 0 50 50"
-                                    >
-                                        <use href={`/sprite.svg#${spriteId}`} />
-                                    </svg>
-                                ) : (
-                                    <span class="text-base leading-none">
-                                        🔧
-                                    </span>
-                                )}
-                                {skill}
-                            </li>
-                        );
-                    })
-                }
-                {
-                    skills.map((skill) => {
-                        const spriteId = skillSpriteIds[skill.toLowerCase()];
-                        return (
-                            <li class="flex items-center gap-2 bg-bg2 border-[length:var(--pill-border-width)] border-border-base rounded-[var(--radius-card)] shadow-[var(--shadow-hard-pill)] px-[18px] py-[9px] text-xs font-medium text-fg whitespace-nowrap shrink-0 transition-all duration-250 cursor-default hover:bg-accent-orange/[0.07] hover:text-accent-orange">
-                                {spriteId ? (
-                                    <svg
-                                        class="w-5 h-5 shrink-0"
-                                        viewBox="0 0 50 50"
-                                    >
-                                        <use href={`/sprite.svg#${spriteId}`} />
-                                    </svg>
-                                ) : (
-                                    <span class="text-base leading-none">
-                                        🔧
-                                    </span>
-                                )}
-                                {skill}
-                            </li>
-                        );
-                    })
-                }
-            </ul>
-        </aside>
+    <!-- Projects Showcase Carousel (Full-bleed 100vw across full screen!) -->
+    <div id="projects" class="pt-2 relative z-2 w-full">
+        <div class="projects-carousel-container">
+            <div class="projects-carousel-track" id="carousel-track">
+                {projects.map((project, i) => (
+                    <a href={`/project/${slugify(project.name)}`} class="project-carousel-item flex-shrink-0 block" data-index={i}>
+                        <div
+                            class="project-carousel-card relative overflow-hidden rounded-2xl cursor-pointer"
+                            style={`background-image: url(${project.img}); view-transition-name: project-image-${slugify(project.name)};`}
+                            data-main-img={project.img}
+                            data-hover-img={project.imgs ? (project.imgs.find((img: string) => img !== project.img) ?? project.img) : project.img}
+                        >
+                        </div>
+                    </a>
+                ))}
+            </div>
+        </div>
+
+        <!-- Carousel Navigation Arrows aligned with right margin -->
+        <div class="max-w-[1200px] mx-auto px-6 flex justify-end gap-3 mt-4">
+            <button id="carousel-prev" class="w-10 h-10 rounded-full bg-bg2 border border-bg3 flex items-center justify-center text-fg hover:bg-accent-orange hover:text-bg0 transition-all cursor-pointer shadow-sm" aria-label="Anterior proyecto">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <button id="carousel-next" class="w-10 h-10 rounded-full bg-bg2 border border-bg3 flex items-center justify-center text-fg hover:bg-accent-orange hover:text-bg0 transition-all cursor-pointer shadow-sm" aria-label="Siguiente proyecto">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+        </div>
     </div>
 </section>
+
+<script>
+    function initHeroInteractions() {
+        // Carousel controls
+        const track = document.getElementById('carousel-track');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+
+        if (track && prevBtn && nextBtn) {
+            prevBtn.onclick = () => {
+                track.scrollBy({ left: -520, behavior: 'smooth' });
+            };
+            nextBtn.onclick = () => {
+                track.scrollBy({ left: 520, behavior: 'smooth' });
+            };
+
+            // Restore scroll position from session storage
+            const savedScroll = sessionStorage.getItem('carouselScrollLeft');
+            if (savedScroll) {
+                const originalBehavior = track.style.scrollBehavior;
+                track.style.scrollBehavior = 'auto'; // Disable smooth scroll temporarily
+                track.scrollLeft = parseInt(savedScroll, 10);
+                
+                // Re-enable after a microtask so it applies without animating
+                setTimeout(() => {
+                    track.style.scrollBehavior = originalBehavior;
+                }, 10);
+            }
+
+            // Save scroll position whenever it changes
+            track.addEventListener('scroll', () => {
+                sessionStorage.setItem('carouselScrollLeft', track.scrollLeft.toString());
+            }, { passive: true });
+        }
+
+        // Hover image swap
+        const boxesContent = document.querySelectorAll('.project-carousel-card') as NodeListOf<HTMLElement>;
+        boxesContent.forEach((box) => {
+            box.addEventListener('mouseenter', () => {
+                const hoverImg = box.dataset.hoverImg;
+                if (hoverImg) box.style.backgroundImage = `url(${hoverImg})`;
+            });
+            box.addEventListener('mouseleave', () => {
+                const mainImg = box.dataset.mainImg;
+                if (mainImg) box.style.backgroundImage = `url(${mainImg})`;
+            });
+        });
+    }
+
+    initHeroInteractions();
+    document.addEventListener('astro:after-swap', initHeroInteractions);
+</script>

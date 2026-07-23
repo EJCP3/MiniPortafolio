@@ -13,33 +13,31 @@ interface Props {
 
 const { name, email, profiles } = Astro.props;
 const reversedEmail = email.split("").reverse().join("");
-
-const nameParts = name.trim().split(" ");
-const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
 ---
 
 <section
     id="contact"
-    class="pt-[100px] pb-[60px] border-t border-bg2 relative overflow-hidden contact-glow"
+    class="pt-[80px] pb-[60px] relative overflow-hidden contact-glow"
 >
     <div class="max-w-[1080px] mx-auto px-6">
         <h2
-            class="font-mono font-extrabold text-cream tracking-tight leading-[1.6] text-center mb-3.5 reveal"
-            style="font-size: clamp(28px, 4vw, 10px);"
+            class="font-sans font-extrabold text-cream tracking-tight leading-[1.4] text-center mb-12 reveal"
+            style="font-size: clamp(24px, 3.5vw, 36px);"
         >
-            Si algo de esto te llama la atención, te hace pensar, <em
-                class="italic text-accent-orange">¡hablemos!.</em
+            Si algo de esto te llama la atención, <em
+                class="italic text-accent-orange">¡hablemos!</em
             >
         </h2>
 
         <address class="not-italic">
             <ul
-                class="grid grid-cols-1 gap-4 max-w-[780px] mx-auto mb-16 md:grid-cols-2 p-0 m-0 list-none"
+                class="grid grid-cols-1 gap-4 max-w-[780px] mx-auto md:grid-cols-3 p-0 m-0 list-none"
             >
+                <!-- Email -->
                 <li class="w-full">
                     <button
                         data-conf={reversedEmail}
-                        class="contact-link copy-email-btn flex items-center gap-3.5 bg-bg1 border-[length:var(--card-border-width)] border-[color:var(--border-color-base)] rounded-[var(--radius-card)] shadow-[var(--shadow-hard-card)] py-[18px] px-5 no-underline text-fg transition-all duration-250 relative overflow-hidden hover:-translate-y-[3px] hover:border-[color:var(--border-color-card-hover)] hover:shadow-[var(--shadow-hard-card)] reveal w-full text-left cursor-pointer"
+                        class="contact-link copy-email-btn flex items-center gap-3.5 bg-bg1 border-[length:var(--card-border-width)] border-[color:var(--border-color-base)] rounded-[var(--radius-card)] shadow-[var(--shadow-hard-card)] py-[18px] px-5 no-underline text-fg transition-all duration-250 relative overflow-hidden hover:-translate-y-[3px] hover:border-[color:var(--border-color-card-hover)] reveal w-full text-left cursor-pointer"
                     >
                         <div
                             class="w-[38px] h-[38px] rounded-[var(--radius-card)] border-[length:var(--pill-border-width)] border-border-base shadow-[var(--shadow-hard-pill)] flex items-center justify-center text-lg shrink-0 bg-accent-orange/[0.12]"
@@ -50,7 +48,7 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
                         </div>
                         <div>
                             <p
-                                class="text-[11px] tracking-wider uppercase text-fg-sub mb-0.5 email-label transition-colors duration-200"
+                                class="text-[11px] tracking-wider uppercase text-fg-sub mb-0.5 email-label transition-colors duration-200 font-mono"
                             >
                                 Email
                             </p>
@@ -64,6 +62,7 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
                     </button>
                 </li>
 
+                <!-- Social profiles -->
                 {
                     profiles.map((profile) => {
                         const networkLower = profile.network.toLowerCase();
@@ -82,7 +81,7 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
                                     href={profile.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="contact-link flex items-center gap-3.5 bg-bg1 border-[length:var(--card-border-width)] border-[color:var(--border-color-base)] rounded-[var(--radius-card)] shadow-[var(--shadow-hard-card)] py-[18px] px-5 no-underline text-fg transition-all duration-250 relative overflow-hidden hover:-translate-y-[3px] hover:border-[color:var(--border-color-card-hover)] hover:shadow-[var(--shadow-hard-card)] reveal"
+                                    class="contact-link flex items-center gap-3.5 bg-bg1 border-[length:var(--card-border-width)] border-[color:var(--border-color-base)] rounded-[var(--radius-card)] shadow-[var(--shadow-hard-card)] py-[18px] px-5 no-underline text-fg transition-all duration-250 relative overflow-hidden hover:-translate-y-[3px] hover:border-[color:var(--border-color-card-hover)] reveal"
                                 >
                                     <div
                                         class={`w-[38px] h-[38px] rounded-[var(--radius-card)] border-[length:var(--pill-border-width)] border-border-base shadow-[var(--shadow-hard-pill)] flex items-center justify-center text-lg shrink-0 ${bgClass}`}
@@ -111,7 +110,7 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
                                         )}
                                     </div>
                                     <div>
-                                        <p class="text-[11px] tracking-wider uppercase text-fg-sub mb-0.5">
+                                        <p class="text-[11px] tracking-wider uppercase text-fg-sub mb-0.5 font-mono">
                                             {profile.network}
                                         </p>
                                         <p class="text-[13px] font-medium text-fg">
@@ -125,24 +124,6 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
                 }
             </ul>
         </address>
-
-        <footer
-            class="text-center border-t border-bg2 pt-8 flex flex-col items-center gap-2"
-        >
-            <p
-                class="font-italic text-[16px] font-extrabold text-cream tracking-tight"
-            >
-                Creando con mucho amor <span
-                    class="text-accent-orange text-sm font-light italic"
-                    >y con musica de fondo.</span
-                >
-                <span class="text-accent-orange"></span>
-            </p>
-            <p class="text-[11px] text-fg-sub tracking-wider">
-                © {new Date().getFullYear()}
-                {name.trim()}.
-            </p>
-        </footer>
     </div>
 </section>
 
@@ -153,7 +134,6 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
             btn.addEventListener("click", async () => {
                 const conf = btn.getAttribute("data-conf");
                 if (conf) {
-                    // Revertimos la cadena para que al copiar sea el email correcto
                     const originalEmail = conf.split("").reverse().join("");
                     try {
                         await navigator.clipboard.writeText(originalEmail);
@@ -174,9 +154,6 @@ const initials = nameParts.map((p) => p[0]?.toLowerCase()).join("");
         });
     }
 
-    // Ejecutar al cargar
     initEmail();
-
-    // Re-ejecutar si se usa ViewTransitions de Astro
     document.addEventListener("astro:after-swap", initEmail);
 </script>
