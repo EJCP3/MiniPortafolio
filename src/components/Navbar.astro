@@ -18,7 +18,7 @@ const { name = "EJCP" } = Astro.props;
             {name}<span class="text-accent-orange">.</span>
         </a>
         <div class="flex items-center gap-4">
-            <button id="theme-toggle" class="cursor-pointer p-2 flex items-center justify-center w-8 h-8 rounded-[var(--radius-card)] border-[length:var(--pill-border-width)] border-border-base shadow-[var(--shadow-hard-pill)] bg-bg2 hover:bg-bg3 transition-all" aria-label="Toggle Theme">
+            <button id="theme-toggle" class="cursor-pointer p-2 flex items-center justify-center w-8 h-8 rounded-[var(--radius-card)]  bg-bg2 hover:bg-bg3 transition-all" aria-label="Toggle Theme">
                 <svg id="theme-icon-dark" class="w-4 h-4 block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
@@ -42,7 +42,13 @@ const { name = "EJCP" } = Astro.props;
     import { play } from 'cuelume';
 
     function initThemeToggle() {
-        const themeToggle = document.getElementById('theme-toggle');
+        let themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+
+        const oldBtn = themeToggle.cloneNode(true) as HTMLElement;
+        themeToggle.parentNode?.replaceChild(oldBtn, themeToggle);
+
+        const btn = document.getElementById('theme-toggle');
         const iconDark = document.getElementById('theme-icon-dark');
         const iconLight = document.getElementById('theme-icon-light');
 
@@ -57,11 +63,6 @@ const { name = "EJCP" } = Astro.props;
         };
 
         updateIcons();
-
-        // Remove old listener to avoid stacking on re-init
-        const oldBtn = themeToggle?.cloneNode(true) as HTMLElement;
-        themeToggle?.parentNode?.replaceChild(oldBtn, themeToggle);
-        const btn = document.getElementById('theme-toggle');
 
         btn?.addEventListener('click', () => {
             const switchTheme = () => {
@@ -88,4 +89,3 @@ const { name = "EJCP" } = Astro.props;
     initThemeToggle();
     document.addEventListener('astro:after-swap', initThemeToggle);
 </script>
-

@@ -4,7 +4,7 @@ interface Props {
 }
 const { title = "Euddy Cabrera — Full Stack Developer" } = Astro.props;
 
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 ---
 
@@ -32,7 +32,10 @@ import "../styles/global.css";
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="Euddy Cabrera | Full Stack Developer" />
+    <meta
+      property="twitter:title"
+      content="Euddy Cabrera | Full Stack Developer"
+    />
     <meta
       property="twitter:description"
       content="Especialista en crear aplicaciones web modernas, rápidas y fáciles de usar. Diseño interfaces atractivas combinadas con sistemas potentes y seguros para hacer crecer tu negocio o proyecto."
@@ -46,22 +49,25 @@ import "../styles/global.css";
     <script is:inline>
       const initTheme = () => {
         const theme = (() => {
-          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-            return localStorage.getItem('theme');
+          if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+          ) {
+            return localStorage.getItem("theme");
           }
-          return 'dark';
+          return "dark";
         })();
-        if (theme === 'light') {
-          document.documentElement.classList.add('light');
+        if (theme === "light") {
+          document.documentElement.classList.add("light");
         } else {
-          document.documentElement.classList.remove('light');
+          document.documentElement.classList.remove("light");
         }
       };
-      
+
       initTheme();
-      document.addEventListener('astro:after-swap', () => {
+      document.addEventListener("astro:after-swap", () => {
         initTheme();
-        document.documentElement.classList.add('no-hero-animations');
+        document.documentElement.classList.add("no-hero-animations");
       });
     </script>
     <ClientRouter />
@@ -70,52 +76,66 @@ import "../styles/global.css";
     <slot />
 
     <script>
-      import { play } from 'cuelume';
+      import { play } from "cuelume";
 
       function initInteractionSounds() {
         // Prevent multiple initializations
         if (window.__interactionSoundsInitialized) return;
         window.__interactionSoundsInitialized = true;
 
-        document.addEventListener('mouseover', (e) => {
-          const target = e.target.closest('a, button, .project-carousel-card, .contact-link');
+        document.addEventListener("mouseover", (e) => {
+          const target = e.target.closest(
+            "a, button, .project-carousel-card, .contact-link",
+          );
           if (target && !target.dataset.hovered) {
-            target.dataset.hovered = 'true';
-            
-            if (target.classList.contains('project-carousel-card') || target.closest('.project-carousel-card')) {
-                play('bloom');
-            } else if (target.classList.contains('copy-email-btn')) {
-                play('whisper');
-            } else if (target.classList.contains('contact-link')) {
-                play('droplet');
+            target.dataset.hovered = "true";
+
+            if (
+              target.classList.contains("project-carousel-card") ||
+              target.closest(".project-carousel-card")
+            ) {
+              play("bloom");
+            } else if (target.classList.contains("copy-email-btn")) {
+              play("whisper");
+            } else if (target.classList.contains("contact-link")) {
+              play("droplet");
             } else {
-                play('tick');
+              play("tick");
             }
 
-            target.addEventListener('mouseleave', () => {
-              target.dataset.hovered = '';
-            }, { once: true });
+            target.addEventListener(
+              "mouseleave",
+              () => {
+                target.dataset.hovered = "";
+              },
+              { once: true },
+            );
           }
         });
 
-        document.addEventListener('mousedown', (e) => {
-          const target = e.target.closest('a, button, .project-carousel-card, .contact-link');
-          if (target && target.id !== 'theme-toggle') {
-            if (target.classList.contains('copy-email-btn')) {
-                play('success');
-            } else if (target.classList.contains('project-carousel-card') || target.closest('.project-carousel-card')) {
-                play('chime');
-            } else if (target.classList.contains('contact-link')) {
-                play('sparkle');
+        document.addEventListener("mousedown", (e) => {
+          const target = e.target.closest(
+            "a, button, .project-carousel-card, .contact-link",
+          );
+          if (target && target.id !== "theme-toggle") {
+            if (target.classList.contains("copy-email-btn")) {
+              play("success");
+            } else if (
+              target.classList.contains("project-carousel-card") ||
+              target.closest(".project-carousel-card")
+            ) {
+              play("chime");
+            } else if (target.classList.contains("contact-link")) {
+              play("sparkle");
             } else {
-                play('press');
+              play("press");
             }
           }
         });
       }
 
       initInteractionSounds();
-      document.addEventListener('astro:after-swap', () => {
+      document.addEventListener("astro:after-swap", () => {
         window.__interactionSoundsInitialized = false;
         initInteractionSounds();
       });
